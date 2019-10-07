@@ -14,7 +14,7 @@ namespace domain.Entities
         [Required(ErrorMessage = "E-mail de usuário obrigatório.")]
         public string Email { get; set; }
 
-        public IList<Table> Tables { get; set; }
+        public IList<PlayerTable> PlayerTables { get; set; }
         public IList<Card> Cards { get; set; }
     }
 }
