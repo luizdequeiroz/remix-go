@@ -9,5 +9,6 @@ namespace domain
 
         public DbSet<User> Users { get; set; }
         public DbSet<Table> Tables { get; set; }
+        public DbSet<Card> Cards { get; set; }
     }
 }

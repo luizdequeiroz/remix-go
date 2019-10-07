@@ -24,13 +24,13 @@ namespace api.Controllers.Treatments
             message
         });
 
-        public static NotFoundObjectResult Warning(string message) => new NotFoundObjectResult(new
+        public static BadRequestObjectResult Warning(string message) => new BadRequestObjectResult(new
         {
             result = false,
             message
         });
 
-        public static NotFoundObjectResult Warning(string title, string message) => new NotFoundObjectResult(new
+        public static BadRequestObjectResult Warning(string title, string message) => new BadRequestObjectResult(new
         {
             result = false,
             title,
