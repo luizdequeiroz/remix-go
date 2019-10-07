@@ -1,0 +1,35 @@
+{
+  "name": "remix-go",
+  "version": "1.0.0",
+  "description": "Frontend web para o sistema Remix Go.",
+  "main": "index.jsx",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luizdequeiroz/remix-go.git"
+  },
+  "keywords": [
+    "remix",
+    "go",
+    "rpg",
+    "game",
+    "online"
+  ],
+  "author": "Luiz de Queiroz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luizdequeiroz/remix-go/issues"
+  },
+  "homepage": "https://github.com/luizdequeiroz/remix-go#readme",
+  "dependencies": {
+    "react": "^16.10.1",
+    "react-dom": "^16.10.1",
+    "react-router-dom": "^5.1.1",
+    "react-scripts": "^3.1.2"
+  }
+}
