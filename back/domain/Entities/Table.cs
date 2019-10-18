@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using domain.Attributes.Validations;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,7 +12,7 @@ namespace domain.Entities
         public string Description { get; set; }
 
         [ForeignKey("Master")]
-        [Required(ErrorMessage = "É necessário informar um mestre para assumir à mesa.")]
+        [NotEqual(0, ErrorMessage = "É necessário informar um mestre para assumir à mesa.")]
         public int MasterId { get; set; }
         public User Master { get; set; }
 

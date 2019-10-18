@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace domain.Entities
 {
@@ -16,5 +17,8 @@ namespace domain.Entities
 
         public IList<PlayerTable> PlayerTables { get; set; }
         public IList<Card> Cards { get; set; }
+
+        [NotMapped]
+        public string Token { get; set; }
     }
 }

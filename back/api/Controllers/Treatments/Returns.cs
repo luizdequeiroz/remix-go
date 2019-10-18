@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
+using System.Linq;
 
 namespace api.Controllers.Treatments
 {
@@ -34,6 +36,13 @@ namespace api.Controllers.Treatments
         {
             result = false,
             title,
+            message
+        });
+
+        public static BadRequestObjectResult Info(ModelStateDictionary modelState, string message) => new BadRequestObjectResult(new
+        {
+            result = false,
+            validations = modelState.Select(model => model.Value.Errors.Select(error => error.ErrorMessage)),
             message
         });
 

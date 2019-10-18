@@ -1,17 +1,16 @@
 ﻿using domain;
-using domain.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using repository;
-using repository.Interfaces;
 using service;
 using service.Interfaces;
 using Swashbuckle.AspNetCore.Swagger;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Reflection;
 
 namespace api
@@ -41,12 +40,15 @@ namespace api
                 options.Filters.Add(new CorsAuthorizationFilterFactory("AllowAll"));
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-            services.AddSingleton<IUserService, UserService>();
-            services.AddSingleton<IGenericRepository<User>, GenericRepository<User>>();
-
-            services.InjectDbContext(Configuration);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .ConfigureApiBehaviorOptions(options =>
+                {
+                    options.InvalidModelStateResponseFactory = context =>
+                    {
+                        return Controllers.Treatments.Returns.Info(context.ModelState, "Preencha as informações obrigatórias e corretamente.");
+                    };
+                });
 
             var version = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
             services.AddSwaggerGen(c =>
@@ -56,7 +58,29 @@ namespace api
                     Title = Configuration.GetValue<string>("api_name"),
                     Version = version
                 });
+                c.AddSecurityDefinition("Bearer",
+                    new ApiKeyScheme
+                    {
+                        In = "header",
+                        Description = "Insira o token de uma sessão válida.",
+                        Name = "Authorization",
+                        Type = "apiKey"
+                    }
+                );
+                c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
+                {
+                    { "Bearer", Enumerable.Empty<string>() }
+                });
             });
+
+            services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<ITableService, TableService>();
+
+            services.InjectRepositories();
+            services.InjectAccessControllConfigurations(Configuration);
+            services.InjectUtilities();
+
+            services.InjectDbContext(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

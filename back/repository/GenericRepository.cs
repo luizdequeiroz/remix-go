@@ -2,7 +2,10 @@
 using domain.Entities;
 using ExtensionsPlus;
 using repository.Interfaces;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace repository
@@ -45,6 +48,11 @@ namespace repository
             result.SetProperties(entity);
             await Context.SaveChangesAsync();
             return result;
+        }
+
+        public async Task<IEnumerable<E>> SelectWhere(Expression<Func<E, bool>> expression)
+        {
+            return await Task.FromResult(Context.Set<E>().Where(expression).AsEnumerable());
         }
     }
 }

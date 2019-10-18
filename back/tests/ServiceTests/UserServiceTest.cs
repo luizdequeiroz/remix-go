@@ -22,7 +22,7 @@ namespace tests.ServiceTests
                     RemixGoContextFactory
                         .GetContext()
                         .ApplyUserMocks()
-                )
+                ), null, null
             );
         }
 
