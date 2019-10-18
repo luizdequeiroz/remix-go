@@ -14,14 +14,14 @@ namespace api.Controllers
     {
         protected readonly TIService iService;
 
-        private readonly string createdMessage;
-        private readonly string readAllHasNoResultMessage;
-        private readonly string readByIdHasNoResultTitle;
-        private readonly string readByIdHasNoResultMessage;
-        private readonly string updatedMessage;
-        private readonly string deleteFailedTitle;
-        private readonly string deleteFailedMessage;
-        private readonly string deletedMessage;
+        protected readonly string createdMessage;
+        protected readonly string readAllHasNoResultMessage;
+        protected readonly string readByIdHasNoResultTitle;
+        protected readonly string readByIdHasNoResultMessage;
+        protected readonly string updatedMessage;
+        protected readonly string deleteFailedTitle;
+        protected readonly string deleteFailedMessage;
+        protected readonly string deletedMessage;
 
         public GenericController(TIService iService,
             string createdMessage,

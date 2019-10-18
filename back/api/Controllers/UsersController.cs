@@ -55,7 +55,7 @@ namespace api.Controllers
             {
                 var userCreated = await iService.SetNewUserAsync(user);
 
-                return Success(userCreated, "Usuário criado com sucesso!");
+                return Success(userCreated, createdMessage);
             }
             catch (Exception ex)
             {
