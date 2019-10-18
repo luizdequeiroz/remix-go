@@ -6,9 +6,8 @@ namespace service
 {
     public class TableService : GenericService<Table>, ITableService
     {
-        public TableService(IGenericRepository<Table> repository)
+        public TableService(IGenericRepository<Table> repository) : base(repository)
         {
-            this.repository = repository;
         }
     }
 }

@@ -13,6 +13,11 @@ namespace service
     {
         protected IGenericRepository<E> repository;
 
+        public GenericService(IGenericRepository<E> repository)
+        {
+            this.repository = repository;
+        }
+
         public async Task<E> AlterAsync(E entity)
         {
             var original = await GetByIdAsync(entity.Id);

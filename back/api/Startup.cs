@@ -75,6 +75,7 @@ namespace api
 
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<ITableService, TableService>();
+            services.AddSingleton<ICardService, CardService>();
 
             services.InjectRepositories();
             services.InjectAccessControllConfigurations(Configuration);

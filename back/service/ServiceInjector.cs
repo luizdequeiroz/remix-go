@@ -15,6 +15,7 @@ namespace service
         {
             services.AddSingleton<IGenericRepository<User>, GenericRepository<User>>();
             services.AddSingleton<IGenericRepository<Table>, GenericRepository<Table>>();
+            services.AddSingleton<IGenericRepository<Card>, GenericRepository<Card>>();
         }
 
         public static void InjectAccessControllConfigurations(this IServiceCollection services, IConfiguration configuration)

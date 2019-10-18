@@ -45,6 +45,18 @@ namespace api.Controllers
             this.deletedMessage = deletedMessage;
         }
 
+        public GenericController(TIService iService) : this(iService,
+            "Registered successfully",
+            "None found",
+            "No records found",
+            "Maybe the record has been deleted, contact support",
+            "Registration updated successfully",
+            "Unable to delete record",
+            "Maybe the record has already been deleted, contact support",
+            "Record successfully deleted")
+        {            
+        }
+
         [HttpPost]
         public virtual async Task<IActionResult> CreateAsync(PrincipalEntity entity)
         {

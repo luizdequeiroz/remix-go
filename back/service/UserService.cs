@@ -12,9 +12,8 @@ namespace service
         private readonly CryptoUtility cryptoUtility;
         private readonly TokenUtility tokenUtility;
 
-        public UserService(IGenericRepository<User> repository, CryptoUtility cryptoUtility, TokenUtility tokenUtility)
+        public UserService(IGenericRepository<User> repository, CryptoUtility cryptoUtility, TokenUtility tokenUtility) : base(repository)
         {
-            this.repository = repository;
             this.cryptoUtility = cryptoUtility;
             this.tokenUtility = tokenUtility;
         }
@@ -27,6 +26,7 @@ namespace service
 
             var token = tokenUtility.GetToken(userConsulted);
             userConsulted.Token = token;
+            userConsulted.Cards = null;
             return userConsulted;
         }
 
