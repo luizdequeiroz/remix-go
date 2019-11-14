@@ -8,7 +8,7 @@ namespace domain
     {
         public static void InjectDbContext(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<RemixGoContext>(options => options.UseMySQL(configuration.GetConnectionString("MySqlRemixGo"), b => b.MigrationsAssembly("api")));
+            services.AddDbContext<RemixGoContext>(options => options.UseMySQL(configuration.GetConnectionString("MySqlRemixGo"), b => b.MigrationsAssembly("api")), ServiceLifetime.Transient);
         }
     }
 }

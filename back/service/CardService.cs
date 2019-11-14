@@ -6,7 +6,8 @@ namespace service
 {
     public class CardService : GenericService<Card>, ICardService
     {
-        public CardService(IGenericRepository<Card> repository) : base(repository)
+        public CardService(IGenericRepository<Card> repository) 
+            : base(repository)
         {
         }
     }

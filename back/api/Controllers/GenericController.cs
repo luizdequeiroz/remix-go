@@ -54,7 +54,7 @@ namespace api.Controllers
             "Unable to delete record",
             "Maybe the record has already been deleted, contact support",
             "Record successfully deleted")
-        {            
+        {
         }
 
         [HttpPost]

@@ -34,8 +34,8 @@ namespace service
 
         public static void InjectUtilities(this IServiceCollection services)
         {
-            services.AddTransient(typeof(CryptoUtility));
-            services.AddTransient(typeof(TokenUtility));
+            services.AddTransient(typeof(CryptoUtility))
+                .AddTransient(typeof(TokenUtility));
         }
     }
 }

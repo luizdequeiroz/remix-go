@@ -1,9 +1,9 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using domain.Entities;
+﻿using domain.Entities;
 using repository.Interfaces;
 using service.Interfaces;
 using service.Utilities;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace service
 {
@@ -12,7 +12,8 @@ namespace service
         private readonly CryptoUtility cryptoUtility;
         private readonly TokenUtility tokenUtility;
 
-        public UserService(IGenericRepository<User> repository, CryptoUtility cryptoUtility, TokenUtility tokenUtility) : base(repository)
+        public UserService(IGenericRepository<User> repository, CryptoUtility cryptoUtility, TokenUtility tokenUtility) 
+            : base(repository)
         {
             this.cryptoUtility = cryptoUtility;
             this.tokenUtility = tokenUtility;
