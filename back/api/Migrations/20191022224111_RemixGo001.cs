@@ -152,6 +152,29 @@ namespace api.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Tables",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySQL:AutoIncrement", true),
+                    RegisterDate = table.Column<DateTime>(nullable: false),
+                    UpdateDate = table.Column<DateTime>(nullable: true),
+                    Name = table.Column<string>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
+                    MasterId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tables", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Tables_Users_MasterId",
+                        column: x => x.MasterId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Cards",
                 columns: table => new
                 {
@@ -183,7 +206,8 @@ namespace api.Migrations
                     VelocityEfficiencyLimit = table.Column<int>(nullable: false),
                     Annotations = table.Column<string>(nullable: true),
                     ExperiencePoints = table.Column<int>(nullable: false),
-                    ExperienceLevel = table.Column<int>(nullable: false)
+                    ExperienceLevel = table.Column<int>(nullable: false),
+                    TableId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -194,26 +218,37 @@ namespace api.Migrations
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Cards_Tables_TableId",
+                        column: x => x.TableId,
+                        principalTable: "Tables",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tables",
+                name: "PlayerTable",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySQL:AutoIncrement", true),
                     RegisterDate = table.Column<DateTime>(nullable: false),
                     UpdateDate = table.Column<DateTime>(nullable: true),
-                    Name = table.Column<string>(nullable: false),
-                    Description = table.Column<string>(nullable: true),
-                    MasterId = table.Column<int>(nullable: false)
+                    UserId = table.Column<int>(nullable: false),
+                    TableId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tables", x => x.Id);
+                    table.PrimaryKey("PK_PlayerTable", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Tables_Users_MasterId",
-                        column: x => x.MasterId,
+                        name: "FK_PlayerTable_Tables_TableId",
+                        column: x => x.TableId,
+                        principalTable: "Tables",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PlayerTable_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -471,41 +506,6 @@ namespace api.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "UserCardTable",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:AutoIncrement", true),
-                    RegisterDate = table.Column<DateTime>(nullable: false),
-                    UpdateDate = table.Column<DateTime>(nullable: true),
-                    CardId = table.Column<int>(nullable: false),
-                    UserId = table.Column<int>(nullable: false),
-                    TableId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserCardTable", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_UserCardTable_Cards_CardId",
-                        column: x => x.CardId,
-                        principalTable: "Cards",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_UserCardTable_Tables_TableId",
-                        column: x => x.TableId,
-                        principalTable: "Tables",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_UserCardTable_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_CardArmor_ArmorId",
                 table: "CardArmor",
@@ -582,6 +582,11 @@ namespace api.Migrations
                 column: "PlayerId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Cards_TableId",
+                table: "Cards",
+                column: "TableId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CardSkill_CardId",
                 table: "CardSkill",
                 column: "CardId");
@@ -602,24 +607,19 @@ namespace api.Migrations
                 column: "WeaponId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tables_MasterId",
-                table: "Tables",
-                column: "MasterId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserCardTable_CardId",
-                table: "UserCardTable",
-                column: "CardId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserCardTable_TableId",
-                table: "UserCardTable",
+                name: "IX_PlayerTable_TableId",
+                table: "PlayerTable",
                 column: "TableId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserCardTable_UserId",
-                table: "UserCardTable",
+                name: "IX_PlayerTable_UserId",
+                table: "PlayerTable",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tables_MasterId",
+                table: "Tables",
+                column: "MasterId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -652,7 +652,7 @@ namespace api.Migrations
                 name: "CardWeapon");
 
             migrationBuilder.DropTable(
-                name: "UserCardTable");
+                name: "PlayerTable");
 
             migrationBuilder.DropTable(
                 name: "Armor");
@@ -679,10 +679,10 @@ namespace api.Migrations
                 name: "Skill");
 
             migrationBuilder.DropTable(
-                name: "Weapon");
+                name: "Cards");
 
             migrationBuilder.DropTable(
-                name: "Cards");
+                name: "Weapon");
 
             migrationBuilder.DropTable(
                 name: "Tables");

@@ -10,7 +10,7 @@ using static api.Controllers.Treatments.Returns;
 
 namespace api.Controllers
 {
-    [Authorize("Bearer")]
+    //[Authorize("Bearer")]
     public class UsersController : GenericController<IUserService, User>
     {
         public UsersController(IUserService userService)

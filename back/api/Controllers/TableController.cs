@@ -13,7 +13,7 @@ namespace api.Controllers
                 "Talvez a mesa tenha sido deletada, contate o suporte.",
                 "Mesa atualizada com sucesso!",
                 "Não foi possível deletar a mesa!",
-                "Talvez a já tenha sido deletada, contate o suporte.",
+                "Talvez a mesa já tenha sido deletada, contate o suporte.",
                 "Mesa deletada com sucesso!")
         {
         }

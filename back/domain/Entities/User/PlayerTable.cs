@@ -2,10 +2,9 @@
 
 namespace domain.Entities
 {
-    [Table("UserCardTable")]
-    public class PlayerTable : CardRelationship
+    public class PlayerTable : Entity
     {
-        [ForeignKey("User")]
+        [ForeignKey("Player")]
         public int UserId { get; set; }
         public User Player { get; set; }
 

@@ -9,7 +9,7 @@ using domain;
 namespace api.Migrations
 {
     [DbContext(typeof(RemixGoContext))]
-    [Migration("20191007011019_RemixGo001")]
+    [Migration("20191022224111_RemixGo001")]
     partial class RemixGo001
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -99,6 +99,8 @@ namespace api.Migrations
 
                     b.Property<int>("StrengthEfficiencyLimit");
 
+                    b.Property<int?>("TableId");
+
                     b.Property<DateTime?>("UpdateDate");
 
                     b.Property<int>("Velocity");
@@ -108,6 +110,8 @@ namespace api.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("PlayerId");
+
+                    b.HasIndex("TableId");
 
                     b.ToTable("Cards");
                 });
@@ -357,8 +361,6 @@ namespace api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CardId");
-
                     b.Property<DateTime>("RegisterDate");
 
                     b.Property<int>("TableId");
@@ -369,13 +371,11 @@ namespace api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CardId");
-
                     b.HasIndex("TableId");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserCardTable");
+                    b.ToTable("PlayerTable");
                 });
 
             modelBuilder.Entity("domain.Entities.Practice", b =>
@@ -489,6 +489,10 @@ namespace api.Migrations
                         .WithMany("Cards")
                         .HasForeignKey("PlayerId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("domain.Entities.Table")
+                        .WithMany("Cards")
+                        .HasForeignKey("TableId");
                 });
 
             modelBuilder.Entity("domain.Entities.CardArmor", b =>
@@ -610,11 +614,6 @@ namespace api.Migrations
 
             modelBuilder.Entity("domain.Entities.PlayerTable", b =>
                 {
-                    b.HasOne("domain.Entities.Card", "Card")
-                        .WithMany()
-                        .HasForeignKey("CardId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("domain.Entities.Table", "Table")
                         .WithMany("PlayerTables")
                         .HasForeignKey("TableId")

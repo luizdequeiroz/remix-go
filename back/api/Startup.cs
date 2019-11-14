@@ -73,9 +73,9 @@ namespace api
                 });
             });
 
-            services.AddSingleton<IUserService, UserService>();
-            services.AddSingleton<ITableService, TableService>();
-            services.AddSingleton<ICardService, CardService>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ITableService, TableService>();
+            services.AddTransient<ICardService, CardService>();
 
             services.InjectRepositories();
             services.InjectAccessControllConfigurations(Configuration);

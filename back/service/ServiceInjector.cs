@@ -13,9 +13,9 @@ namespace service
     {
         public static void InjectRepositories(this IServiceCollection services)
         {
-            services.AddSingleton<IGenericRepository<User>, GenericRepository<User>>();
-            services.AddSingleton<IGenericRepository<Table>, GenericRepository<Table>>();
-            services.AddSingleton<IGenericRepository<Card>, GenericRepository<Card>>();
+            services.AddTransient<IGenericRepository<User>, GenericRepository<User>>()
+                .AddTransient<IGenericRepository<Table>, GenericRepository<Table>>()
+                .AddTransient<IGenericRepository<Card>, GenericRepository<Card>>();
         }
 
         public static void InjectAccessControllConfigurations(this IServiceCollection services, IConfiguration configuration)
@@ -34,8 +34,8 @@ namespace service
 
         public static void InjectUtilities(this IServiceCollection services)
         {
-            services.AddSingleton(typeof(CryptoUtility));
-            services.AddSingleton(typeof(TokenUtility));
+            services.AddTransient(typeof(CryptoUtility));
+            services.AddTransient(typeof(TokenUtility));
         }
     }
 }
