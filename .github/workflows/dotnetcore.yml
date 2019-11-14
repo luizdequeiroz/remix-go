@@ -19,12 +19,6 @@ jobs:
     - name: Unit tests with dotnet
       run: dotnet test back/tests/tests.csproj -c Release
     - name: Publish with dotnet
-      run: dotnet publish back/api/api.csproj -c Release -o ../artifacts
-    - name: Adding artifacts to repository with Git
-      run: git add back/artifacts
-    - name: Applying global settings for Git authentication
-      run: git config --global user.email "https://luizdequeiroz@github.com" && git config --global user.name "luizdequeiroz"
-    - name: Commiting artifacts to repository with Git
-      run: git commit -m 'Adding published artifacts.'
-    - name: Pushing artifacts to repository with Git
-      run: git push origin HEAD:master
+      run: dotnet publish back/api/api.csproj -c Release
+    - name: Finnaly
+      run: echo "Finally!"
