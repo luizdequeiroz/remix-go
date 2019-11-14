@@ -1,0 +1,30 @@
+name: Build .NET Core
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest, windows-latest]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 2.2.108
+    - name: Restore with dotnet
+      run: dotnet restore back/api/api.csproj
+    - name: Build with dotnet
+      run: dotnet build back/api/api.csproj -c Release
+    - name: Unit tests with dotnet
+      run: dotnet test back/tests/tests.csproj -c Release
+    - name: Publish with dotnet
+      run: dotnet publish back/api/api.csproj -c Release -o ../artifacts
+    - name: Adding artifacts to repository with Git
+      run: git add back/artifacts
+    - name: Applying global settings for Git authentication
+      run: git config --global user.email "luizdequeiroz@github.com" && git config --global user.name "luizdequeiroz"
+    - name: Commiting artifacts to repository with Git
+      run: git commit -m 'Adding published artifacts.'
+    - name: Pushing artifacts to repository with Git
+      run: git push origin HEAD:master
