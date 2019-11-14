@@ -17,6 +17,6 @@ jobs:
     - name: Build with dotnet
       run: dotnet build back/api/api.csproj -c Release
     - name: Unit tests with dotnet
-      run: dotnet test
+      run: dotnet test back/tests/tests.csproj -c Release
     - name: Publish with dotnet
       run: dotnet publish back/api/api.csproj -c Release
