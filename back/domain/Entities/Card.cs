@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using domain.Attributes.Validations;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace domain.Entities
 {
     public class Card : Entity
     {
+        [NotEqual(0, ErrorMessage = "É necessário que a ficha pertença a um jogador.")]
         [ForeignKey("User")]
         public int PlayerId { get; set; }
         public User Player { get; set; }
