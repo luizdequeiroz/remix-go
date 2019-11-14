@@ -17,6 +17,6 @@ jobs:
       with:
         dotnet-version: 2.2.108
     - name: Restore with dotnet
-      run: dotnet --startup-project back/api/api.csproj restore
+      run: dotnet restore back/api/api.csproj
     - name: Build with dotnet
-      run: dotnet --startup-project back/api/api.csproj build --configuration Release
+      run: dotnet build --configuration Release back/api/api.csproj
