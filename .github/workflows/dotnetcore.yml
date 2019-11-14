@@ -27,4 +27,4 @@ jobs:
     - name: Commiting artifacts to repository with Git
       run: git commit -m 'Adding published artifacts.'
     - name: Pushing artifacts to repository with Git
-      run: git push
+      run: git push origin HEAD:master
