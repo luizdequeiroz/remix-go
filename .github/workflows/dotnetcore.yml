@@ -19,7 +19,7 @@ jobs:
     - name: Unit tests with dotnet
       run: dotnet test back/tests/tests.csproj -c Release
     - name: Publish with dotnet
-      run: dotnet publish back/api/api.csproj -c Release -o back/artifacts
+      run: dotnet publish back/api/api.csproj -c Release -o ../artifacts
     - name: Adding artifacts to repository with Git
       run: git add back/artifacts
     - name: Commiting artifacts to repository with Git
