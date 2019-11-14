@@ -23,7 +23,7 @@ jobs:
     - name: Adding artifacts to repository with Git
       run: git add back/artifacts
     - name: Applying global settings for Git authentication
-      run: git config --global user.email "luizdequeiroz@github.com" && git config --global user.name "luizdequeiroz"
+      run: git config --global user.email "https://luizdequeiroz@github.com" && git config --global user.name "luizdequeiroz"
     - name: Commiting artifacts to repository with Git
       run: git commit -m 'Adding published artifacts.'
     - name: Pushing artifacts to repository with Git
