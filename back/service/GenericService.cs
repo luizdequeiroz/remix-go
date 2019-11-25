@@ -13,7 +13,7 @@ namespace service
     {
         protected IGenericRepository<E> repository;
 
-        public GenericService(IGenericRepository<E> repository)
+        protected GenericService(IGenericRepository<E> repository)
         {
             this.repository = repository;
         }

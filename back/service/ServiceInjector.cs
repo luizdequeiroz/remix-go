@@ -26,6 +26,16 @@ namespace service
                 .AddTransient<IGenericRepository<PropertyAndRiche>, GenericRepository<PropertyAndRiche>>()
                 .AddTransient<IGenericRepository<Skill>, GenericRepository<Skill>>()
                 .AddTransient<IGenericRepository<Weapon>, GenericRepository<Weapon>>();
+
+            services.AddTransient<IGenericRepository<CardArmor>, GenericRepository<CardArmor>>()
+                .AddTransient<IGenericRepository<CardCapabilitie>, GenericRepository<CardCapabilitie>>()
+                .AddTransient<IGenericRepository<CardDisadvantage>, GenericRepository<CardDisadvantage>>()
+                .AddTransient<IGenericRepository<CardEnhancedMove>, GenericRepository<CardEnhancedMove>>()
+                .AddTransient<IGenericRepository<CardItem>, GenericRepository<CardItem>>()
+                .AddTransient<IGenericRepository<CardPractice>, GenericRepository<CardPractice>>()
+                .AddTransient<IGenericRepository<CardPropertyAndRiche>, GenericRepository<CardPropertyAndRiche>>()
+                .AddTransient<IGenericRepository<CardSkill>, GenericRepository<CardSkill>>()
+                .AddTransient<IGenericRepository<CardWeapon>, GenericRepository<CardWeapon>>();
         }
 
         public static void InjectAccessControllConfigurations(this IServiceCollection services, IConfiguration configuration)
