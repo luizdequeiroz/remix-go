@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using service.Interfaces;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using static api.Controllers.Treatments.Returns;
 
@@ -62,9 +61,9 @@ namespace api.Controllers
         {
             try
             {
-                var userCreated = await iService.SetNewAsync(entity);
+                var registerCreated = await iService.SetNewAsync(entity);
 
-                return Success(userCreated, createdMessage);
+                return Success(registerCreated, createdMessage);
             }
             catch (Exception ex)
             {
@@ -77,12 +76,12 @@ namespace api.Controllers
         {
             try
             {
-                var users = await iService.GetAllAsync();
+                var registers = await iService.GetAllAsync();
 
-                if (users.Count() == 0)
+                if (registers.Count == 0)
                     return Warning(readAllHasNoResultMessage);
 
-                return Success(users);
+                return Success(registers);
             }
             catch (Exception ex)
             {
@@ -95,12 +94,12 @@ namespace api.Controllers
         {
             try
             {
-                var user = await iService.GetByIdAsync(id);
+                var register = await iService.GetByIdAsync(id);
 
-                if (user == null)
+                if (register == null)
                     return Warning(readByIdHasNoResultTitle, readByIdHasNoResultMessage);
 
-                return Success(user);
+                return Success(register);
             }
             catch (Exception ex)
             {
@@ -114,9 +113,9 @@ namespace api.Controllers
             try
             {
                 entity.Id = id;
-                var userUpdated = await iService.AlterAsync(entity);
+                var registerUpdated = await iService.AlterAsync(entity);
 
-                return Success(userUpdated, updatedMessage);
+                return Success(registerUpdated, updatedMessage);
             }
             catch (Exception ex)
             {
