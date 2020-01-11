@@ -37,7 +37,8 @@ namespace service
 
         public async Task<IList<E>> GetAllAsync()
         {
-            return (await repository.SelectAllAsync()).ToList();
+            var all = await repository.SelectAllAsync();
+            return all.ToList();
         }
 
         public async Task<E> GetByIdAsync(int id)

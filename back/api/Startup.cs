@@ -1,4 +1,5 @@
 ﻿using domain;
+using domain.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using service;
 using service.Interfaces;
+using service.Utilities;
+using service.Utilities.Interfaces;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -76,6 +79,9 @@ namespace api
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ITableService, TableService>();
             services.AddTransient<ICardService, CardService>();
+            services.AddTransient<IArmorService, ArmorService>();
+
+            services.AddTransient<IServiceSwitch, ServiceSwitch>();
 
             services.InjectRepositories();
             services.InjectAccessControllConfigurations(Configuration);
