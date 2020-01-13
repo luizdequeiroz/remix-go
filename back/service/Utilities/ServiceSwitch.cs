@@ -6,7 +6,6 @@ using service.Utilities.Enums;
 using service.Utilities.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,6 +14,7 @@ namespace service.Utilities
     public class ServiceSwitch : IServiceSwitch
     {
         private readonly IServiceProvider serviceProvider;
+        private readonly string FullNameEntities = @"domain.Entities.{0}, domain";
 
         public ServiceSwitch(IServiceProvider serviceProvider)
         {
@@ -37,24 +37,24 @@ namespace service.Utilities
                 case ServiceType.Card: service = serviceProvider.GetService<ICardService>(); break;
                 case ServiceType.PlayerTable: service = serviceProvider.GetService<IPlayerTableService>(); break;
                 case ServiceType.Armor: service = serviceProvider.GetService<IArmorService>(); break;
-                case ServiceType.CAPABILITIE: service = serviceProvider.GetService<ICapabilitieService>(); break;
-                case ServiceType.DISADVANTAGE: service = serviceProvider.GetService<IDisadvantageService>(); break;
-                case ServiceType.ENHANCEDMOVE: service = serviceProvider.GetService<IEnhancedMoveService>(); break;
-                case ServiceType.ITEM: service = serviceProvider.GetService<IItemService>(); break;
-                case ServiceType.PRACTICE: service = serviceProvider.GetService<IPracticeService>(); break;
-                case ServiceType.PROPERTYANDRICHE: service = serviceProvider.GetService<IPropertyAndRicheService>(); break;
-                case ServiceType.SKILL: service = serviceProvider.GetService<ISkillService>(); break;
-                case ServiceType.WEAPON: service = serviceProvider.GetService<IWeaponService>(); break;
+                case ServiceType.Capabilitie: service = serviceProvider.GetService<ICapabilitieService>(); break;
+                case ServiceType.Disadvantage: service = serviceProvider.GetService<IDisadvantageService>(); break;
+                case ServiceType.EnhancedMove: service = serviceProvider.GetService<IEnhancedMoveService>(); break;
+                case ServiceType.Item: service = serviceProvider.GetService<IItemService>(); break;
+                case ServiceType.Practice: service = serviceProvider.GetService<IPracticeService>(); break;
+                case ServiceType.PropertyAndRiche: service = serviceProvider.GetService<IPropertyAndRicheService>(); break;
+                case ServiceType.Skill: service = serviceProvider.GetService<ISkillService>(); break;
+                case ServiceType.Weapon: service = serviceProvider.GetService<IWeaponService>(); break;
 
-                case ServiceType.CARDARMOR: service = serviceProvider.GetService<ICardArmorService>(); break;
-                case ServiceType.CARDCAPABILITIE: service = serviceProvider.GetService<ICardCapabilitieService>(); break;
-                case ServiceType.CARDDISADVANTAGE: service = serviceProvider.GetService<ICardDisadvantageService>(); break;
-                case ServiceType.CARDENHANCEDMOVE: service = serviceProvider.GetService<ICardEnhancedMoveService>(); break;
-                case ServiceType.CARDITEM: service = serviceProvider.GetService<ICardItemService>(); break;
-                case ServiceType.CARDPRACTICE: service = serviceProvider.GetService<ICardPracticeService>(); break;
-                case ServiceType.CARDPROPERTYANDRICHE: service = serviceProvider.GetService<ICardPropertyAndRicheService>(); break;
-                case ServiceType.CARDSKILL: service = serviceProvider.GetService<ICardSkillService>(); break;
-                case ServiceType.CARDWEAPON: service = serviceProvider.GetService<ICardWeaponService>(); break;
+                case ServiceType.CardArmor: service = serviceProvider.GetService<ICardArmorService>(); break;
+                case ServiceType.CardCapabilitie: service = serviceProvider.GetService<ICardCapabilitieService>(); break;
+                case ServiceType.CardDisadvantage: service = serviceProvider.GetService<ICardDisadvantageService>(); break;
+                case ServiceType.CardEnhancedMove: service = serviceProvider.GetService<ICardEnhancedMoveService>(); break;
+                case ServiceType.CardItem: service = serviceProvider.GetService<ICardItemService>(); break;
+                case ServiceType.CardPractice: service = serviceProvider.GetService<ICardPracticeService>(); break;
+                case ServiceType.CardPropertyAndRiche: service = serviceProvider.GetService<ICardPropertyAndRicheService>(); break;
+                case ServiceType.CardSkill: service = serviceProvider.GetService<ICardSkillService>(); break;
+                case ServiceType.CardWeapon: service = serviceProvider.GetService<ICardWeaponService>(); break;
 
                 default:
                     var exception = new Exception("Service type is invalid.");
@@ -63,46 +63,46 @@ namespace service.Utilities
 
             SetNewAsync = async (entity) =>
             {
-                var serviceTypeName = serviceType.ToString();
-                var typeServiceType = Type.GetType($"domain.Entities.{serviceTypeName}, domain");
-                var changedEntity = ConvertToObject(entity, typeServiceType);
-                var result = await service.SetNewAsync(changedEntity);
-                return ConvertToDynamic(result);
+                var typeServiceType = Type.GetType(string.Format(FullNameEntities, serviceType.ToString()));
+
+                dynamic result;
+                switch (typeServiceType.Name)
+                {
+                    case "User": result = await service.SetNewAsync(JsonConvert.DeserializeObject<User>(entity.ToString())); break;
+                    case "Table": result = await service.SetNewAsync(JsonConvert.DeserializeObject<Table>(entity.ToString())); break;
+                    case "Card": result = await service.SetNewAsync(JsonConvert.DeserializeObject<Card>(entity.ToString())); break;
+                    case "PlayerTable": result = await service.SetNewAsync(JsonConvert.DeserializeObject<PlayerTable>(entity.ToString())); break;
+                    case "Armor": result = await service.SetNewAsync(JsonConvert.DeserializeObject<Armor>(entity.ToString())); break;
+                    case "Capabilitie": result = await service.SetNewAsync(JsonConvert.DeserializeObject<Capabilitie>(entity.ToString())); break;
+                    case "Disadvantage": result = await service.SetNewAsync(JsonConvert.DeserializeObject<Disadvantage>(entity.ToString())); break;
+                    case "EnhancedMove": result = await service.SetNewAsync(JsonConvert.DeserializeObject<EnhancedMove>(entity.ToString())); break;
+                    case "Item": result = await service.SetNewAsync(JsonConvert.DeserializeObject<Item>(entity.ToString())); break;
+                    case "Practice": result = await service.SetNewAsync(JsonConvert.DeserializeObject<Practice>(entity.ToString())); break;
+                    case "PropertyAndRiche": result = await service.SetNewAsync(JsonConvert.DeserializeObject<PropertyAndRiche>(entity.ToString())); break;
+                    case "Skill": result = await service.SetNewAsync(JsonConvert.DeserializeObject<Skill>(entity.ToString())); break;
+                    case "Weapon": result = await service.SetNewAsync(JsonConvert.DeserializeObject<Weapon>(entity.ToString())); break;
+                    case "CardArmor": result = await service.SetNewAsync(JsonConvert.DeserializeObject<CardArmor>(entity.ToString())); break;
+                    case "CardCapabilitie": result = await service.SetNewAsync(JsonConvert.DeserializeObject<CardCapabilitie>(entity.ToString())); break;
+                    case "CardDisadvantage": result = await service.SetNewAsync(JsonConvert.DeserializeObject<CardDisadvantage>(entity.ToString())); break;
+                    case "CardEnhancedMove": result = await service.SetNewAsync(JsonConvert.DeserializeObject<CardEnhancedMove>(entity.ToString())); break;
+                    case "CardItem": result = await service.SetNewAsync(JsonConvert.DeserializeObject<CardItem>(entity.ToString())); break;
+                    case "CardPractice": result = await service.SetNewAsync(JsonConvert.DeserializeObject<CardPractice>(entity.ToString())); break;
+                    case "CardPropertyAndRiche": result = await service.SetNewAsync(JsonConvert.DeserializeObject<CardPropertyAndRiche>(entity.ToString())); break;
+                    case "CardSkill": result = await service.SetNewAsync(JsonConvert.DeserializeObject<CardSkill>(entity.ToString())); break;
+                    case "CardWeapon": result = await service.SetNewAsync(JsonConvert.DeserializeObject<CardWeapon>(entity.ToString())); break;
+                    default:
+                        var exception = new Exception("Service type is invalid.");
+                        throw exception;
+                }
+
+                return result;
             };
-            GetAllAsync = async () => ((await service.GetAllAsync()) as IEnumerable<object>).Select(r => ConvertToDynamic(r)).ToList();
+            GetAllAsync = async () => ((await service.GetAllAsync()) as IEnumerable<dynamic>).ToList();
             GetByIdAsync = async (entity) => await service.GetByIdAsync(entity);
             AlterAsync = async (entity) => await service.AlterAsync(entity);
             DeleteAsync = async (entity) => await service.DeleteAsync(entity);
 
             return this;
-        }
-
-        private object ConvertToObject(dynamic dynamic, Type type)
-        {
-            var dictionary = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(dynamic);
-            var @object = type.Assembly.CreateInstance($"{type.FullName}, domain");
-
-            foreach (var key in dictionary.Keys)
-            {
-                @object.GetType().GetProperty(key).SetValue(@object, dictionary[key]);
-            }
-
-            return @object;
-        }
-
-        private dynamic ConvertToDynamic(object @object)
-        {
-            dynamic dynamic = new ExpandoObject();
-            var dictionary = dynamic as IDictionary<string, object>;
-
-            var properties = @object.GetType().GetProperties();
-
-            foreach (var prop in properties)
-            {
-                dictionary.Add(prop.Name, prop.GetValue(@object));
-            }
-
-            return dynamic;
         }
     }
 }

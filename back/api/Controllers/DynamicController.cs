@@ -7,7 +7,7 @@ using static api.Controllers.Treatments.Returns;
 
 namespace api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api")]
     [ApiController]
     public class DynamicController : ControllerBase
     {

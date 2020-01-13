@@ -74,6 +74,7 @@ namespace api
                 {
                     { "Bearer", Enumerable.Empty<string>() }
                 });
+                c.DescribeAllEnumsAsStrings();
             });
 
             services.AddTransient<IUserService, UserService>();
