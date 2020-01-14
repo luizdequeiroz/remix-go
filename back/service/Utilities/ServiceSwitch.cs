@@ -14,7 +14,7 @@ namespace service.Utilities
     public class ServiceSwitch : IServiceSwitch
     {
         private readonly IServiceProvider serviceProvider;
-        private readonly string FullNameEntities = @"domain.Entities.{0}, domain";
+        private readonly string FullNameEntities = "domain.Entities.{0}, domain";
 
         public ServiceSwitch(IServiceProvider serviceProvider)
         {
@@ -23,9 +23,9 @@ namespace service.Utilities
 
         public Func<object, Task<dynamic>> SetNewAsync { get; private set; }
         public Func<Task<IList<dynamic>>> GetAllAsync { get; private set; }
-        public Func<object, Task<dynamic>> GetByIdAsync { get; private set; }
+        public Func<int, Task<dynamic>> GetByIdAsync { get; private set; }
         public Func<object, Task<dynamic>> AlterAsync { get; private set; }
-        public Func<object, Task<dynamic>> DeleteAsync { get; private set; }
+        public Func<int, Task<bool>> DeleteAsync { get; private set; }
 
         public IServiceSwitch Case(ServiceType serviceType)
         {
@@ -98,9 +98,44 @@ namespace service.Utilities
                 return result;
             };
             GetAllAsync = async () => ((await service.GetAllAsync()) as IEnumerable<dynamic>).ToList();
-            GetByIdAsync = async (entity) => await service.GetByIdAsync(entity);
-            AlterAsync = async (entity) => await service.AlterAsync(entity);
-            DeleteAsync = async (entity) => await service.DeleteAsync(entity);
+            GetByIdAsync = async id => await service.GetByIdAsync(id);
+            AlterAsync = async entity =>
+            {
+                var typeServiceType = Type.GetType(string.Format(FullNameEntities, serviceType.ToString()));
+
+                dynamic result;
+                switch (typeServiceType.Name)
+                {
+                    case "User": result = await service.AlterAsync(JsonConvert.DeserializeObject<User>(entity.ToString())); break;
+                    case "Table": result = await service.AlterAsync(JsonConvert.DeserializeObject<Table>(entity.ToString())); break;
+                    case "Card": result = await service.AlterAsync(JsonConvert.DeserializeObject<Card>(entity.ToString())); break;
+                    case "PlayerTable": result = await service.AlterAsync(JsonConvert.DeserializeObject<PlayerTable>(entity.ToString())); break;
+                    case "Armor": result = await service.AlterAsync(JsonConvert.DeserializeObject<Armor>(entity.ToString())); break;
+                    case "Capabilitie": result = await service.AlterAsync(JsonConvert.DeserializeObject<Capabilitie>(entity.ToString())); break;
+                    case "Disadvantage": result = await service.AlterAsync(JsonConvert.DeserializeObject<Disadvantage>(entity.ToString())); break;
+                    case "EnhancedMove": result = await service.AlterAsync(JsonConvert.DeserializeObject<EnhancedMove>(entity.ToString())); break;
+                    case "Item": result = await service.AlterAsync(JsonConvert.DeserializeObject<Item>(entity.ToString())); break;
+                    case "Practice": result = await service.AlterAsync(JsonConvert.DeserializeObject<Practice>(entity.ToString())); break;
+                    case "PropertyAndRiche": result = await service.AlterAsync(JsonConvert.DeserializeObject<PropertyAndRiche>(entity.ToString())); break;
+                    case "Skill": result = await service.AlterAsync(JsonConvert.DeserializeObject<Skill>(entity.ToString())); break;
+                    case "Weapon": result = await service.AlterAsync(JsonConvert.DeserializeObject<Weapon>(entity.ToString())); break;
+                    case "CardArmor": result = await service.AlterAsync(JsonConvert.DeserializeObject<CardArmor>(entity.ToString())); break;
+                    case "CardCapabilitie": result = await service.AlterAsync(JsonConvert.DeserializeObject<CardCapabilitie>(entity.ToString())); break;
+                    case "CardDisadvantage": result = await service.AlterAsync(JsonConvert.DeserializeObject<CardDisadvantage>(entity.ToString())); break;
+                    case "CardEnhancedMove": result = await service.AlterAsync(JsonConvert.DeserializeObject<CardEnhancedMove>(entity.ToString())); break;
+                    case "CardItem": result = await service.AlterAsync(JsonConvert.DeserializeObject<CardItem>(entity.ToString())); break;
+                    case "CardPractice": result = await service.AlterAsync(JsonConvert.DeserializeObject<CardPractice>(entity.ToString())); break;
+                    case "CardPropertyAndRiche": result = await service.AlterAsync(JsonConvert.DeserializeObject<CardPropertyAndRiche>(entity.ToString())); break;
+                    case "CardSkill": result = await service.AlterAsync(JsonConvert.DeserializeObject<CardSkill>(entity.ToString())); break;
+                    case "CardWeapon": result = await service.AlterAsync(JsonConvert.DeserializeObject<CardWeapon>(entity.ToString())); break;
+                    default:
+                        var exception = new Exception("Service type is invalid.");
+                        throw exception;
+                }
+
+                return result;
+            };
+            DeleteAsync = async id => (bool)await service.DeleteAsync(id);
 
             return this;
         }

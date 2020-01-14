@@ -11,7 +11,7 @@ namespace api.Controllers
                 "Nenhuma ficha encontrada!",
                 "Nenhuma ficha foi encontrada!",
                 "Talvez a ficha tenha sido deletada, contate o suporte.",
-                "Ficga atualizada com sucesso!",
+                "Ficha atualizada com sucesso!",
                 "Não foi possível deletar a ficha!",
                 "Talvez a ficha já tenha sido deletada, contate o suporte.",
                 "Ficha deletada com sucesso!")

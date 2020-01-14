@@ -9,9 +9,9 @@ namespace service.Utilities.Interfaces
     {
         Func<object, Task<dynamic>> SetNewAsync { get; }
         Func<Task<IList<dynamic>>> GetAllAsync { get; }
-        Func<object, Task<dynamic>> GetByIdAsync { get; }
+        Func<int, Task<dynamic>> GetByIdAsync { get; }
         Func<object, Task<dynamic>> AlterAsync { get; }
-        Func<object, Task<dynamic>> DeleteAsync { get; }
+        Func<int, Task<bool>> DeleteAsync { get; }
 
         IServiceSwitch Case(ServiceType serviceType);
     }
