@@ -3,10 +3,12 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
+import './assets/style.css';
+
 import store from "./config/store";
 import DevTools from "./config/devtools";
 
-import Template from "./components";
+import Template from "./components/template";
 import routes from "./components/routes";
 
 function App() {

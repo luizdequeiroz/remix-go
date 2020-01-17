@@ -1,39 +1,51 @@
 import React from "react";
-import { FaFile, FaHome, FaCheckCircle } from "react-icons/fa";
+import { FaFile, FaHome, FaCheckCircle, FaDiceD20 } from "react-icons/fa";
+import MenuSection from "./template/menuSection";
 
-function RouteOne() {
-  return "Route One";
+function Cards() {
+  return <h1>Fichas</h1>;
 }
 
-function RouteTwo() {
-  return "Route Two";
+function Tables() {
+  return <h1>Mesas</h1>;
 }
 
-function RouteThree() {
-  return "Route Three";
+function Players() {
+  return <h1>Jogadores</h1>;
 }
 
 export default [
   {
     exact: true,
     path: "/",
+    icon: <FaDiceD20 />,
+    name: "Menu",
+    component: MenuSection,
+    isMenuItem: false,
+    image: require("../assets/img/portfolio/game.png")
+  },
+  {
+    path: "/cards",
     icon: <FaHome />,
-    name: "Rota Um",
-    component: RouteOne,
-    isMenuItem: true
+    name: "Fichas",
+    component: Cards,
+    isMenuItem: true,
+    image: require("../assets/img/portfolio/cabin.png")
   },
   {
-    path: "/route-two",
+    path: "/tables",
     icon: <FaFile />,
-    name: "Rota Dois",
-    component: RouteTwo,
-    isMenuItem: true
+    name: "Mesas",
+    component: Tables,
+    isMenuItem: true,
+    image: require("../assets/img/portfolio/cake.png")
   },
   {
-    path: "/route-three",
+    path: "/players",
     icon: <FaCheckCircle />,
-    name: "Rota Três",
-    component: RouteThree,
-    isMenuItem: false
+    name: "Jogadores",
+    component: Players,
+    isMenuItem: true,
+    image: require("../assets/img/portfolio/circus.png")
   }
 ];
