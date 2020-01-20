@@ -22,7 +22,7 @@ export default [
     name: "Menu",
     component: MenuSection,
     isMenuItem: false,
-    image: require("../assets/img/portfolio/game.png")
+    image: require("../assets/img/menuItens/game.png")
   },
   {
     path: "/cards",
@@ -30,7 +30,7 @@ export default [
     name: "Fichas",
     component: Cards,
     isMenuItem: true,
-    image: require("../assets/img/portfolio/cabin.png")
+    image: require("../assets/img/menuItens/cabin.png")
   },
   {
     path: "/tables",
@@ -38,7 +38,7 @@ export default [
     name: "Mesas",
     component: Tables,
     isMenuItem: true,
-    image: require("../assets/img/portfolio/cake.png")
+    image: require("../assets/img/menuItens/cake.png")
   },
   {
     path: "/players",
@@ -46,6 +46,6 @@ export default [
     name: "Jogadores",
     component: Players,
     isMenuItem: true,
-    image: require("../assets/img/portfolio/circus.png")
+    image: require("../assets/img/menuItens/circus.png")
   }
 ];
