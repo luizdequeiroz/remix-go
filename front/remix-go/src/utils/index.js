@@ -1,20 +1,7 @@
-import React from 'react';
 import { put } from 'redux-saga/effects';
 import fetch from 'isomorphic-fetch';
-import { FaTimesCircle } from 'react-icons/fa';
 import guid from 'guid';
-
-// Variáveis globais informadas no arquivo de configuração do webpack
-export const ENV = process.env.NODE_ENV;
-export const ENV_PRODUCTION = 'production';
-export const ENV_DEVELOPMENT = 'development';
-export const API_USUARIO = process.env.REACT_APP_API_USUARIO;
-export const API_CENTRAL = process.env.REACT_APP_API_CENTRAL;
-export const API_VERSAO_SISTEMA = process.env.REACT_APP_API_VERSAO_SISTEMA;
-export const API_FARMACIA_POPULAR = process.env.REACT_APP_API_FARMACIA_POPULAR;
-export const API_CADASTRO = process.env.REACT_APP_API_CADASTRO;
-export const API_FARMACIA_POPULAR_LOCAL = process.env.REACT_APP_API_FARMACIA_POPULAR_LOCAL;
-export const MOCKS = process.env.REACT_APP_MOCKS && ENV === ENV_DEVELOPMENT ? true : false;
+import Swal from 'sweetalert2';
 
 /**
  * Função para transformar um objeto em parâmetros de url (var1=valor1)
@@ -80,8 +67,6 @@ export function* fetchUrl(url,
         yield put({
             type: 'set_value', payload: {
                 key: 'status', value: {
-                    className: '',
-                    message: '',
                     showModal: false
                 }
             }
@@ -100,27 +85,26 @@ export function* fetchUrl(url,
         yield put({ type: 'set_value', payload: { key: 'central', value: error, treatment } });
 
         if (callback && callback.messageForError) {
+            Swal.fire({
+                title: callback.messageForError,
+                type: 'error'
+            });
             yield put({
                 type: 'set_value', payload: {
                     key: 'status', value: {
-                        icon: <FaTimesCircle />,
-                        className: 'alert-danger',
-                        message: callback.messageForError,
-                        autohide: true,
-                        showModal: true
+                        showModal: false
                     }
                 }
             });
         } else {
+            Swal.fire({
+                title: 'Erro na solicitação.',
+                type: 'error'
+            });
             yield put({
                 type: 'set_value', payload: {
                     key: 'status', value: {
-                        icon: <FaTimesCircle />,
-                        className: 'alert-danger',
-                        message: (error && error.message) ?
-                            error.message : 'Erro na solicitação. Consulte o log para detalhes.',
-                        autohide: true,
-                        showModal: true
+                        showModal: false
                     }
                 }
             });

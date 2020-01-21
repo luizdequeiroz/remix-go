@@ -7,5 +7,6 @@ namespace service.Interfaces
     {
         Task<User> LoginAsync(User user);
         Task<User> SetNewUserAsync(User user);
+        Task<User> AlterUserAsync(User user);
     }
 }

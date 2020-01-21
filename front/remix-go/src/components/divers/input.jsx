@@ -16,11 +16,11 @@ export default ({ input = {}, type, placeholder, small, meta: { touched, error, 
     input.id = input.name;
 
     const theInput =
-        type === "textarea" ? <textarea className="form-control" {...input} {...inputProps}></textarea>
-            : (type === "select" ? <select className="form-control" {...input} {...inputProps}>
+        type === "textarea" ? <textarea className="form-control no-radius" {...input} {...inputProps}></textarea>
+            : (type === "select" ? <select className="form-control no-radius" {...input} {...inputProps}>
                 <option value="">-- {placeholder} --</option>
                 {children}
-            </select> : <input className="form-control" {...input} {...inputProps} />);
+            </select> : <input className="form-control no-radius" {...input} {...inputProps} />);
 
     return (
         <div className={type === "textarea" ? 'container-fluid' : 'form-group'}>

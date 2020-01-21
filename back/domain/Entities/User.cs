@@ -8,11 +8,8 @@ namespace domain.Entities
     {
         [Required(ErrorMessage = "Nome de usuário obrigatório.")]
         public string Username { get; set; }
-        [Required(ErrorMessage = "Senha de usuário obrigatória.")]
         public string Password { get; set; }
-        [Required(ErrorMessage = "Nome completo obrigatório.")]
         public string Fullname { get; set; }
-        [Required(ErrorMessage = "E-mail de usuário obrigatório.")]
         public string Email { get; set; }
 
         public IList<PlayerTable> PlayerTables { get; set; }
@@ -20,5 +17,7 @@ namespace domain.Entities
 
         [NotMapped]
         public string Token { get; set; }
+        [NotMapped]
+        public string CurrentPassword { get; set; }
     }
 }

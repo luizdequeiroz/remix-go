@@ -1,3 +1,27 @@
 a {
     outline: 0;
 }
+
+.bs-popover-auto[x-placement^="right"]>.arrow::after,
+.bs-popover-right>.arrow::after {
+    border-right-color: #dc3545;
+}
+
+.bs-popover-auto[x-placement^="bottom"]>.arrow::after,
+.bs-popover-bottom>.arrow::after {
+    border-bottom-color: #dc3545;
+}
+
+.bs-popover-auto[x-placement^="left"]>.arrow::after,
+.bs-popover-left>.arrow::after {
+    border-left-color: #dc3545;
+}
+
+.bs-popover-auto[x-placement^="top"]>.arrow::after,
+.bs-popover-top>.arrow::after {
+    border-top-color: #dc3545;
+}
+
+.no-radius {
+    border-radius: 0;
+}

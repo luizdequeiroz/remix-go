@@ -62,5 +62,21 @@ namespace api.Controllers
                 return Error(ex);
             }
         }
+
+        [HttpPut("{id}")]
+        public override async Task<IActionResult> UpdateAsync(int id, User user)
+        {
+            try
+            {
+                user.Id = id;
+                var userAltered = await iService.AlterUserAsync(user);
+
+                return Success(userAltered, updatedMessage);
+            }
+            catch (Exception ex)
+            {
+                return Error(ex);
+            }
+        }
     }
 }
