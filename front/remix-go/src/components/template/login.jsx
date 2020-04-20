@@ -3,7 +3,7 @@ import { useApply, useSagas } from 'react-resaga';
 import { useForm } from 'react-hook-form';
 import Input from '../divers/input';
 import { Modal } from 'react-bootstrap';
-import { FaCog, FaDiceD6, FaDiceD20 } from "react-icons/fa";
+import { FaCog, FaDiceD20 } from "react-icons/fa";
 import DicesDivider from './dices-divider';
 
 function Login() {

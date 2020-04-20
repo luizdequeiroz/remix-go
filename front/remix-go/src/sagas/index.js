@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { apply } from 'react-resaga';
 import { login } from './usuario';
+import { getSheetsByUserId } from './sheet';
 import Swal from 'sweetalert2';
 
 function prepareHeaders() {
@@ -45,6 +46,12 @@ function* prepareResponse(response, treatment, callback) {
                 });
             } else throw new Error(JSON.stringify(response.data))
         }
+    } else if (response.status < 200 || response.status >= 300) {
+        Swal.fire({
+            title: 'Erro no serviço!',
+            text: `Código de Erro: ${response.status}`,
+            icon: 'error'
+        });
     }
 
     const treated = treatment && treatment(response.data);
@@ -112,5 +119,6 @@ export function* request({ method, api, endpoint, data, config: { params, treatm
 
 export default {
     request,
-    login
+    login,
+    getSheetsByUserId
 };

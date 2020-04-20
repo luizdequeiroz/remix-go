@@ -5,20 +5,18 @@ import routes from "../routes";
 import DicesDivider from './dices-divider';
 
 function MenuItem({ name, path, image, imageWidth, key }) {
-    return (
-        <div className="col-md-6 col-lg-4" key={key}>
+    return <div className="col-md-6 col-lg-4" key={key}>
+        <div className="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
             <Link key={key} to={path} className="without-border">
-                <div className="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
-                    <div className="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                        <div className="portfolio-item-caption-content text-center text-white">
-                            <h1>{name}</h1>
-                        </div>
+                <div className="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                    <div className="portfolio-item-caption-content text-center text-white">
+                        <h1>{name}</h1>
                     </div>
-                    <img className="img-fluid" src={image} alt={name} width={imageWidth} />
                 </div>
             </Link>
+            <img className="img-fluid" src={image} alt={name} width={imageWidth} />
         </div>
-    );
+    </div>;
 }
 
 function MenuSection() {

@@ -1,10 +1,7 @@
 import React from "react";
 import { FaFile, FaHome, FaCheckCircle, FaDiceD20 } from "react-icons/fa";
 import MenuSection from "./template/menuSection";
-
-function Cards() {
-  return <h1>Fichas</h1>;
-}
+import Sheets from "./sheet";
 
 function Tables() {
   return <h1>Mesas</h1>;
@@ -24,10 +21,10 @@ export default [
     isMenuItem: false
   },
   {
-    path: "/cards",
+    path: "/sheets",
     icon: <FaHome />,
     name: "Fichas",
-    component: Cards,
+    component: Sheets,
     isMenuItem: true,
     image: require("../assets/img/menuItens/rpgsheet.png")
   },
