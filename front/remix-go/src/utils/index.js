@@ -1,7 +1,4 @@
-import { put } from 'redux-saga/effects';
-import fetch from 'isomorphic-fetch';
-import guid from 'guid';
-import Swal from 'sweetalert2';
+export const REACT_APP_API_REMIXGO = process.env.REACT_APP_API_REMIXGO;
 
 /**
  * Função para transformar um objeto em parâmetros de url (var1=valor1)
@@ -29,87 +26,6 @@ export function toTitleCase(str) {
     return str.replace(/\w\S*/g,
         (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
     );
-}
-
-/**
- * Executa uma requisição a uma url usando Fetch.
- * 
- * @export
- * @param {string} url
- * @param {string} returnReduceKey
- * @param {object} [parametros={}]
- * @param {object} dispatch
- * @param {object} callback
- */
-export function* fetchUrl(url,
-    returnReduceKey,
-    parametros = {},
-    treatment,
-    callback) {
-
-    try {
-        const data = yield fetch(url, parametros);
-        const jsonData = yield data.json();
-        if (data.status < 200 || data.status >= 300) {
-            console.log(jsonData);
-            if (jsonData !== null && typeof jsonData === 'object' && jsonData.StackTraceString && jsonData.Message && jsonData.Message !== 'Unexpected end of JSON input') {
-                let err = jsonData;
-                err['funcao'] = url;
-                err['parametros'] = parametros;
-
-                yield put({ type: 'set_value', payload: { key: 'central', value: err } });
-            }
-
-            if (data.status !== 400) throw new Error(JSON.stringify(jsonData));
-        }
-
-        yield put({ type: 'set_value', payload: { key: returnReduceKey, value: jsonData, treatment } });
-        yield put({
-            type: 'set_value', payload: {
-                key: 'status', value: {
-                    showModal: false
-                }
-            }
-        });
-
-        if (callback && callback.run) {
-            yield put(callback.run(jsonData));
-        }
-    } catch (error) {
-        error['funcao'] = url;
-        error['parametros'] = parametros;
-        error['StackTraceString'] = error.stack;
-        error['Message'] = error.message;
-        delete error.message;
-
-        yield put({ type: 'set_value', payload: { key: 'central', value: error, treatment } });
-
-        if (callback && callback.messageForError) {
-            Swal.fire({
-                title: callback.messageForError,
-                type: 'error'
-            });
-            yield put({
-                type: 'set_value', payload: {
-                    key: 'status', value: {
-                        showModal: false
-                    }
-                }
-            });
-        } else {
-            Swal.fire({
-                title: 'Erro na solicitação.',
-                type: 'error'
-            });
-            yield put({
-                type: 'set_value', payload: {
-                    key: 'status', value: {
-                        showModal: false
-                    }
-                }
-            });
-        }
-    }
 }
 
 /**
@@ -208,15 +124,6 @@ export function fixCNPJ(cnpj) {
  * @param {string} value 
  */
 export const numberOnly = value => value.replace(/\D/g, '');
-
-/**
- * Gerar guid em propriedade chamada guid para lista passada por parâmetro sem que o guid tenha a possibilidade de repetição na lista.
- * @param {Array} list 
- */
-export function generateGuid(list) {
-    const _guid = guid.raw();
-    return list.find(item => item.guid === _guid) ? generateGuid(list) : _guid;
-}
 
 /**
  * Garante que a data inserida não seja uma data no futuro.

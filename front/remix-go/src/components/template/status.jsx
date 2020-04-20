@@ -1,28 +1,27 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { bindDefault } from 'react-binder-generalizers';
-import Toast from 'react-bootstrap/Toast';
+import { Modal, ModalHeader } from 'reactstrap';
+import { useReducers, useApply } from 'react-resaga';
 
-function Status({ status = false, setValue }) {
+function Status() {
+    const { status = false } = useReducers('status');
+    const apply = useApply();
 
     useEffect(() => {
         if (status && status.autohide) {
-            window.setTimeout(() => setValue('status', { showModal: false }), 3000);
+            window.setTimeout(() => apply('status', { showModal: false }), 3000);
         }
-    }, [status, setValue]);
+    }, [status]); // eslint-disable-line
 
     return status && status.showModal && (
-        <div className="pull-right">
-            <div className="mr-3 mt-3">
-                <Toast>
-                    <Toast.Body>
-                        {status.icon}
-                        <p className="h5">{status.message}</p>
-                    </Toast.Body>
-                </Toast>
-            </div>
-        </div>
+        <Modal isOpen={status.showModal}>
+            <ModalHeader className="modal-alert">
+                <div className={`alert alert-${status.type || 'primary'}`}>
+                    {status.icon}
+                    <span className="h5">{status.message}</span>
+                </div>
+            </ModalHeader>
+        </Modal>
     );
 }
 
-export default bindDefault(connect)('status')(Status);
+export default Status;

@@ -21,8 +21,7 @@ export default [
     icon: <FaDiceD20 />,
     name: "Menu",
     component: MenuSection,
-    isMenuItem: false,
-    image: require("../assets/img/menuItens/game.png")
+    isMenuItem: false
   },
   {
     path: "/cards",
@@ -30,7 +29,7 @@ export default [
     name: "Fichas",
     component: Cards,
     isMenuItem: true,
-    image: require("../assets/img/menuItens/cabin.png")
+    image: require("../assets/img/menuItens/rpgsheet.png")
   },
   {
     path: "/tables",
@@ -38,7 +37,7 @@ export default [
     name: "Mesas",
     component: Tables,
     isMenuItem: true,
-    image: require("../assets/img/menuItens/cake.png")
+    image: require("../assets/img/menuItens/roleplay.png")
   },
   {
     path: "/players",
@@ -46,6 +45,6 @@ export default [
     name: "Jogadores",
     component: Players,
     isMenuItem: true,
-    image: require("../assets/img/menuItens/circus.png")
+    image: require("../assets/img/menuItens/rpgplayers2.png")
   }
 ];

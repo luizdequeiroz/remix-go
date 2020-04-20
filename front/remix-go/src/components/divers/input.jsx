@@ -1,34 +1,25 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import { Popover } from 'reactstrap';
 
-export default ({ input = {}, type, placeholder, small, meta: { touched, error, warning } = {}, list, popoverPosition, children, onKeyUp, min, max, autoFocus, inputRef }) => {
-    const inputProps = { type, placeholder, list, onKeyUp, min, max, autoFocus };
+export default ({ name, type, placeholder, small, error, errorMessage, list, popoverPosition, children, onKeyUp, min, max, autoFocus, register, className, readOnly }) => {
+    const inputProps = { name, type, placeholder, list, onKeyUp, min, max, autoFocus, readOnly };
 
-    if (inputRef) {
-        const ref = useRef(null);
-        inputProps.ref = ref;
-
-        useEffect(() => {
-            inputRef(ref);
-        }, [inputRef]);
-    }
-
-    input.id = input.name;
+    inputProps.id = name;
 
     const theInput =
-        type === "textarea" ? <textarea className="form-control no-radius" {...input} {...inputProps}></textarea>
-            : (type === "select" ? <select className="form-control no-radius" {...input} {...inputProps}>
+        type === "textarea" ? <textarea ref={register} className={`form-control no-radius ${className}`} {...inputProps}></textarea>
+            : (type === "select" ? <select ref={register} className={`form-control no-radius ${className}`} {...inputProps}>
                 <option value="">-- {placeholder} --</option>
                 {children}
-            </select> : <input className="form-control no-radius" {...input} {...inputProps} />);
+            </select> : <input ref={register} className={`form-control no-radius ${className}`} {...inputProps} />);
 
     return (
         <div className={type === "textarea" ? 'container-fluid' : 'form-group'}>
             {theInput}
             {small && <small className="form-text text-muted">{small}</small>}
-            {<Popover placement={popoverPosition || 'right'} target={input.id} isOpen={touched && error} >
+            {<Popover placement={popoverPosition || 'right'} target={inputProps.id} isOpen={error} >
                 <div style={{ padding: 10, backgroundColor: '#dc3545', color: 'white' }}>
-                    <span><strong>{error || warning}</strong></span>
+                    <span><strong>{errorMessage}</strong></span>
                 </div>
             </Popover>}
         </div>

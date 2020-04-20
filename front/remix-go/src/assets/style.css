@@ -25,3 +25,59 @@ a {
 .no-radius {
     border-radius: 0;
 }
+
+.btn {
+    cursor: pointer
+}
+
+.position-tr { 
+    position: absolute;
+    z-index: 1301; 
+    width: auto;
+
+    top: 145px;
+    right: 30px; 
+}
+
+.position-tl { 
+    position: absolute;
+    z-index: 1301; 
+    width: auto;
+    
+    top: 145px;
+    left: 30px; 
+}
+
+.position-br { 
+    position: absolute;
+    z-index: 1301; 
+    width: auto;
+    
+    bottom: 60px;
+    right: 30px; 
+}
+
+.position-bl { 
+    position: absolute;
+    z-index: 1301; 
+    width: auto;
+    
+    bottom: 60px;
+    left: 30px; 
+}
+
+.modal-alert {
+    padding: 0;
+}
+
+.modal-alert > .modal-title {
+    width: 100%;
+}
+
+.modal-alert > .modal-title > .alert {
+    margin: 0;
+}
+
+.pointer {
+    cursor: pointer;
+}

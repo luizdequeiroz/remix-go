@@ -1,20 +1,21 @@
 import React, { useEffect } from "react";
+import { useApply, useReducers } from 'react-resaga';
 import Header from './header';
 import Body from './body';
 import Status from './status';
 import Login from './login';
-import { connect } from 'react-redux';
-import { bindDefault } from "react-binder-generalizers";
 import Swal from 'sweetalert2';
 
-function Template({ setValue, session, children }) {
+function Template({ children }) {
+  const apply = useApply();
+  const { session } = useReducers('session');
 
   useEffect(() => {
-    const session = JSON.parse(sessionStorage.getItem('session'));
-    if (session) {
-      setValue('session', session);
+    const _session = JSON.parse(sessionStorage.getItem('session'));
+    if (_session) {
+      apply('session', _session);
     }
-  }, [setValue]);
+  }, []); // eslint-disable-line
 
   useEffect(() => {
     if (session) {
@@ -23,7 +24,7 @@ function Template({ setValue, session, children }) {
       } else {
         Swal.fire({
           title: session.message,
-          type: 'error'
+          icon: 'error'
         });
       }
     }
@@ -43,4 +44,4 @@ function Template({ setValue, session, children }) {
   );
 }
 
-export default bindDefault(connect)('session')(Template);
+export default Template;
