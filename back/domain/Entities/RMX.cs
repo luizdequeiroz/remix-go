@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace domain.Entities
 {
-    public class Card : Entity
+    public class RMX : Entity
     {
         [NotEqual(0, ErrorMessage = "É necessário que a ficha pertença a um jogador.")]
         [ForeignKey("User")]
@@ -32,6 +32,9 @@ namespace domain.Entities
         public int Strength { get; set; }
         public int StrengthEfficiencyLimit { get; set; }
 
+        public int Intelligence { get; set; }
+        public int IntelligenceEfficiencyLimit { get; set; }
+
         public int Resistance { get; set; }
         public int ResistanceEfficiencyLimit { get; set; }
 
@@ -41,21 +44,21 @@ namespace domain.Entities
         public int Velocity { get; set; }
         public int VelocityEfficiencyLimit { get; set; }
 
-        public IList<CardCapabilitie> CardCapabilities { get; set; }
-        public IList<CardSkill> CardSkills { get; set; }
-        public IList<CardDisadvantage> CardDisadvantages { get; set; }
-        public IList<CardPractice> CardPractices { get; set; }
-        public IList<CardEnhancedMove> CardEnhancedMoves { get; set; }
+        public IList<SheetCapabilitie> Capabilities { get; set; }
+        public IList<SheetSkill> Skills { get; set; }
+        public IList<SheetDisadvantage> Disadvantages { get; set; }
+        public IList<SheetPractice> Practices { get; set; }
+        public IList<SheetEnhancedMove> EnhancedMoves { get; set; }
 
-        public IList<CardPropertyAndRiche> CardPropertiesAndRiches { get; set; }
-        public IList<CardItem> CardItems { get; set; }
-        public IList<CardWeapon> CardWeapons { get; set; }
+        public IList<SheetPropertyAndRiche> PropertiesAndRiches { get; set; }
+        public IList<SheetItem> Items { get; set; }
+        public IList<SheetWeapon> Weapons { get; set; }
 
         public string Annotations { get; set; }
 
         public int ExperiencePoints { get; set; }
         public int ExperienceLevel { get; set; }
 
-        public IList<CardArmor> CardArmors { get; set; }
+        public IList<SheetArmor> Armors { get; set; }
     }
 }

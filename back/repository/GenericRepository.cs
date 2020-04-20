@@ -50,7 +50,7 @@ namespace repository
             return result;
         }
 
-        public async Task<IEnumerable<E>> SelectWhere(Expression<Func<E, bool>> expression)
+        public async Task<IEnumerable<E>> SelectWhereAsync(Expression<Func<E, bool>> expression)
         {
             return await Task.FromResult(Context.Set<E>().Where(expression).AsEnumerable());
         }

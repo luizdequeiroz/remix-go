@@ -1,6 +1,6 @@
 ﻿namespace domain.Entities
 {
-    public class Disadvantage : Entity
+    public class EnhancedMove : Testable
     {
     }
 }

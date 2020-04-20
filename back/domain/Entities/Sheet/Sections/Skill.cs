@@ -1,6 +1,6 @@
 ﻿namespace domain.Entities
 {
-    public class Capabilitie : Entity
+    public class Skill : Testable
     {
     }
 }

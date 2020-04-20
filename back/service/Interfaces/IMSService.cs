@@ -2,7 +2,7 @@
 
 namespace service.Interfaces
 {
-    public interface ICardService : IGenericService<Card>
+    public interface IMSService : IGenericService<MS>
     {
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using domain.Attributes.FieldsControl;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -8,6 +9,7 @@ namespace domain.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [NotSetAutomatically]
         public int Id { get; set; }
         public DateTime RegisterDate { get; set; } = DateTime.Now;
         public DateTime? UpdateDate { get; set; }

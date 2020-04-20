@@ -107,6 +107,24 @@ namespace api.Controllers
             }
         }
 
+        [HttpGet("{propertyName}/{value}")]
+        public async Task<IActionResult> ReadByPropertyAsync(string propertyName, string value)
+        {
+            try
+            {
+                var registers = await iService.GetByPropertyAsync(propertyName, value);
+
+                if (registers.Count == 0)
+                    return Warning(readAllHasNoResultMessage);
+
+                return Success(registers);
+            }
+            catch (Exception ex)
+            {
+                return Error(ex);
+            }
+        }
+
         [HttpPut("{id}")]
         public virtual async Task<IActionResult> UpdateAsync(int id, PrincipalEntity entity)
         {

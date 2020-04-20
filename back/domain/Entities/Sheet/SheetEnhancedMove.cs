@@ -2,7 +2,7 @@
 
 namespace domain.Entities
 {
-    public class CardEnhancedMove : CardRelationship
+    public class SheetEnhancedMove : SheetRelationship
     {
         [ForeignKey("EnhancedMove")]
         public int EnhancedMoveId { get; set; }

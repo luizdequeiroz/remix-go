@@ -15,27 +15,31 @@ namespace service
         {
             services.AddTransient<IGenericRepository<User>, GenericRepository<User>>()
                 .AddTransient<IGenericRepository<Table>, GenericRepository<Table>>()
-                .AddTransient<IGenericRepository<Card>, GenericRepository<Card>>();
+                .AddTransient<IGenericRepository<RMX>, GenericRepository<RMX>>()
+                .AddTransient<IGenericRepository<MS>, GenericRepository<MS>>()
+                .AddTransient<IGenericRepository<PlayerTable>, GenericRepository<PlayerTable>>();
 
             services.AddTransient<IGenericRepository<Armor>, GenericRepository<Armor>>()
                 .AddTransient<IGenericRepository<Capabilitie>, GenericRepository<Capabilitie>>()
                 .AddTransient<IGenericRepository<Disadvantage>, GenericRepository<Disadvantage>>()
                 .AddTransient<IGenericRepository<EnhancedMove>, GenericRepository<EnhancedMove>>()
+                .AddTransient<IGenericRepository<GenericAdvantage>, GenericRepository<GenericAdvantage>>()
                 .AddTransient<IGenericRepository<Item>, GenericRepository<Item>>()
                 .AddTransient<IGenericRepository<Practice>, GenericRepository<Practice>>()
                 .AddTransient<IGenericRepository<PropertyAndRiche>, GenericRepository<PropertyAndRiche>>()
                 .AddTransient<IGenericRepository<Skill>, GenericRepository<Skill>>()
                 .AddTransient<IGenericRepository<Weapon>, GenericRepository<Weapon>>();
 
-            services.AddTransient<IGenericRepository<CardArmor>, GenericRepository<CardArmor>>()
-                .AddTransient<IGenericRepository<CardCapabilitie>, GenericRepository<CardCapabilitie>>()
-                .AddTransient<IGenericRepository<CardDisadvantage>, GenericRepository<CardDisadvantage>>()
-                .AddTransient<IGenericRepository<CardEnhancedMove>, GenericRepository<CardEnhancedMove>>()
-                .AddTransient<IGenericRepository<CardItem>, GenericRepository<CardItem>>()
-                .AddTransient<IGenericRepository<CardPractice>, GenericRepository<CardPractice>>()
-                .AddTransient<IGenericRepository<CardPropertyAndRiche>, GenericRepository<CardPropertyAndRiche>>()
-                .AddTransient<IGenericRepository<CardSkill>, GenericRepository<CardSkill>>()
-                .AddTransient<IGenericRepository<CardWeapon>, GenericRepository<CardWeapon>>();
+            services.AddTransient<IGenericRepository<SheetArmor>, GenericRepository<SheetArmor>>()
+                .AddTransient<IGenericRepository<SheetCapabilitie>, GenericRepository<SheetCapabilitie>>()
+                .AddTransient<IGenericRepository<SheetDisadvantage>, GenericRepository<SheetDisadvantage>>()
+                .AddTransient<IGenericRepository<SheetEnhancedMove>, GenericRepository<SheetEnhancedMove>>()
+                .AddTransient<IGenericRepository<SheetGenericAdvantage>, GenericRepository<SheetGenericAdvantage>>()
+                .AddTransient<IGenericRepository<SheetItem>, GenericRepository<SheetItem>>()
+                .AddTransient<IGenericRepository<SheetPractice>, GenericRepository<SheetPractice>>()
+                .AddTransient<IGenericRepository<SheetPropertyAndRiche>, GenericRepository<SheetPropertyAndRiche>>()
+                .AddTransient<IGenericRepository<SheetSkill>, GenericRepository<SheetSkill>>()
+                .AddTransient<IGenericRepository<SheetWeapon>, GenericRepository<SheetWeapon>>();
         }
 
         public static void InjectAccessControllConfigurations(this IServiceCollection services, IConfiguration configuration)

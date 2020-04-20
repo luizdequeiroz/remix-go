@@ -8,10 +8,13 @@ namespace service.Utilities.Enums
         User,
         [Description("Mesa")]
         Table,
-        [Description("Ficha")]
-        Card,
+        [Description("Ficha RMX")]
+        RMX,
+        [Description("Ficha M&S")]
+        MS,
         [Description("Jogador e Mesa")]
         PlayerTable,
+
         [Description("Armadura")]
         Armor,
         [Description("Capacidade")]
@@ -20,6 +23,8 @@ namespace service.Utilities.Enums
         Disadvantage,
         [Description("Movimento Aprimorado")]
         EnhancedMove,
+        [Description("Primazia Genérica")]
+        GenericAdvantage,
         [Description("Item")]
         Item,
         [Description("Prática")]
@@ -30,23 +35,26 @@ namespace service.Utilities.Enums
         Skill,
         [Description("Arma")]
         Weapon,
+
         [Description("Armadura em Ficha")]
-        CardArmor,
+        SheetArmor,
         [Description("Capacidade em Ficha")]
-        CardCapabilitie,
+        SheetCapabilitie,
         [Description("Desvantagem em Ficha")]
-        CardDisadvantage,
+        SheetDisadvantage,
         [Description("Movimento Aprimorado em Ficha")]
-        CardEnhancedMove,
+        SheetEnhancedMove,
+        [Description("Primazia Genérica em Ficha")]
+        SheetGenericAdvantage,
         [Description("Item em Ficha")]
-        CardItem,
+        SheetItem,
         [Description("Prática em Ficha")]
-        CardPractice,
+        SheetPractice,
         [Description("Proprieade e Riqueza em Ficha")]
-        CardPropertyAndRiche,
+        SheetPropertyAndRiche,
         [Description("Perícia em Ficha")]
-        CardSkill,
+        SheetSkill,
         [Description("Arma em Ficha")]
-        CardWeapon
+        SheetWeapon
     }
 }

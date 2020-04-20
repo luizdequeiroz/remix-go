@@ -1,6 +1,6 @@
 ﻿namespace domain.Entities
 {
-    public class Weapon : Entity
+    public class Capabilitie : Testable
     {
     }
 }

@@ -4,9 +4,9 @@ using service.Interfaces;
 
 namespace service
 {
-    public class CardService : GenericService<Card>, ICardService
+    public class MSService : GenericService<MS>, IMSService
     {
-        public CardService(IGenericRepository<Card> repository) 
+        public MSService(IGenericRepository<MS> repository) 
             : base(repository)
         {
         }

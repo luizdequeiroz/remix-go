@@ -23,18 +23,18 @@ namespace service
         public async Task<User> LoginAsync(User user)
         {
             user.Password = cryptoUtility.EncryptPassword(user.Password);
-            var userConsulted = (await repository.SelectWhere(u => u.Username == user.Username)).SingleOrDefault();
+            var userConsulted = (await repository.SelectWhereAsync(u => u.Username == user.Username)).SingleOrDefault();
 
             if (userConsulted == null) return null;
             if (userConsulted.Password != user.Password)
             {
-                var exception = new ArgumentException("Incorrect password!");
+                var exception = new ArgumentException("Senha incorreta!");
                 throw exception;
             }
 
             var token = tokenUtility.GetToken(userConsulted);
             userConsulted.Token = token;
-            userConsulted.Cards = null;
+            userConsulted.RMXs = null;
             return userConsulted;
         }
 
@@ -54,7 +54,7 @@ namespace service
                     throw exception;
                 }
 
-                var usuarioConsulted = (await repository.SelectWhere(u => u.Id == user.Id)).SingleOrDefault();
+                var usuarioConsulted = (await repository.SelectWhereAsync(u => u.Id == user.Id)).SingleOrDefault();
 
                 user.Password = cryptoUtility.EncryptPassword(user.Password);
                 user.CurrentPassword = cryptoUtility.EncryptPassword(user.CurrentPassword);

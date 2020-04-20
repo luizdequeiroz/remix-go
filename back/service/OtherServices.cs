@@ -4,24 +4,28 @@ using repository.Interfaces;
 namespace service
 {
     public interface IPlayerTableService { }
+
     public interface IArmorService { }
     public interface ICapabilitieService { }
     public interface IDisadvantageService { }
     public interface IEnhancedMoveService { }
+    public interface IGenericAdvantageService { }
     public interface IItemService { }
     public interface IPracticeService { }
     public interface IPropertyAndRicheService { }
     public interface ISkillService { }
     public interface IWeaponService { }
-    public interface ICardArmorService { }
-    public interface ICardCapabilitieService { }
-    public interface ICardDisadvantageService { }
-    public interface ICardEnhancedMoveService { }
-    public interface ICardItemService { }
-    public interface ICardPracticeService { }
-    public interface ICardPropertyAndRicheService { }
-    public interface ICardSkillService { }
-    public interface ICardWeaponService { }
+
+    public interface ISheetArmorService { }
+    public interface ISheetCapabilitieService { }
+    public interface ISheetDisadvantageService { }
+    public interface ISheetEnhancedMoveService { }
+    public interface ISheetGenericAdvantageService { }
+    public interface ISheetItemService { }
+    public interface ISheetPracticeService { }
+    public interface ISheetPropertyAndRicheService { }
+    public interface ISheetSkillService { }
+    public interface ISheetWeaponService { }
 
     public class PlayerTableService : GenericService<PlayerTable>, IPlayerTableService
     {
@@ -30,6 +34,8 @@ namespace service
         {
         }
     }
+
+    //
     public class ArmorService : GenericService<Armor>, IArmorService
     {
         public ArmorService(IGenericRepository<Armor> repository)
@@ -54,6 +60,13 @@ namespace service
     public class EnhancedMoveService : GenericService<EnhancedMove>, IEnhancedMoveService
     {
         public EnhancedMoveService(IGenericRepository<EnhancedMove> repository)
+            : base(repository)
+        {
+        }
+    }
+    public class GenericAdvantageService : GenericService<GenericAdvantage>, IGenericAdvantageService
+    {
+        public GenericAdvantageService(IGenericRepository<GenericAdvantage> repository)
             : base(repository)
         {
         }
@@ -93,65 +106,74 @@ namespace service
         {
         }
     }
-    public class CardArmorService : GenericService<CardArmor>, ICardArmorService
+
+    //
+    public class SheetArmorService : GenericService<SheetArmor>, ISheetArmorService
     {
-        public CardArmorService(IGenericRepository<CardArmor> repository)
+        public SheetArmorService(IGenericRepository<SheetArmor> repository)
             : base(repository)
         {
         }
     }
-    public class CardCapabilitieService : GenericService<CardCapabilitie>, ICardCapabilitieService
+    public class SheetCapabilitieService : GenericService<SheetCapabilitie>, ISheetCapabilitieService
     {
-        public CardCapabilitieService(IGenericRepository<CardCapabilitie> repository)
+        public SheetCapabilitieService(IGenericRepository<SheetCapabilitie> repository)
             : base(repository)
         {
         }
     }
-    public class CardDisadvantageService : GenericService<CardDisadvantage>, ICardDisadvantageService
+    public class SheetDisadvantageService : GenericService<SheetDisadvantage>, ISheetDisadvantageService
     {
-        public CardDisadvantageService(IGenericRepository<CardDisadvantage> repository)
+        public SheetDisadvantageService(IGenericRepository<SheetDisadvantage> repository)
             : base(repository)
         {
         }
     }
-    public class CardEnhancedMoveService : GenericService<CardEnhancedMove>, ICardEnhancedMoveService
+    public class SheetEnhancedMoveService : GenericService<SheetEnhancedMove>, ISheetEnhancedMoveService
     {
-        public CardEnhancedMoveService(IGenericRepository<CardEnhancedMove> repository)
+        public SheetEnhancedMoveService(IGenericRepository<SheetEnhancedMove> repository)
             : base(repository)
         {
         }
     }
-    public class CardItemService : GenericService<CardItem>, ICardItemService
+    public class SheetGenericAdvantageService : GenericService<SheetGenericAdvantage>, ISheetGenericAdvantageService
     {
-        public CardItemService(IGenericRepository<CardItem> repository)
+        public SheetGenericAdvantageService(IGenericRepository<SheetGenericAdvantage> repository)
             : base(repository)
         {
         }
     }
-    public class CardPracticeService : GenericService<CardPractice>, ICardPracticeService
+    public class SheetItemService : GenericService<SheetItem>, ISheetItemService
     {
-        public CardPracticeService(IGenericRepository<CardPractice> repository)
+        public SheetItemService(IGenericRepository<SheetItem> repository)
             : base(repository)
         {
         }
     }
-    public class CardPropertyAndRicheService : GenericService<CardPropertyAndRiche>, ICardPropertyAndRicheService
+    public class SheetPracticeService : GenericService<SheetPractice>, ISheetPracticeService
     {
-        public CardPropertyAndRicheService(IGenericRepository<CardPropertyAndRiche> repository)
+        public SheetPracticeService(IGenericRepository<SheetPractice> repository)
             : base(repository)
         {
         }
     }
-    public class CardSkillService : GenericService<CardSkill>, ICardSkillService
+    public class SheetPropertyAndRicheService : GenericService<SheetPropertyAndRiche>, ISheetPropertyAndRicheService
     {
-        public CardSkillService(IGenericRepository<CardSkill> repository)
+        public SheetPropertyAndRicheService(IGenericRepository<SheetPropertyAndRiche> repository)
             : base(repository)
         {
         }
     }
-    public class CardWeaponService : GenericService<CardWeapon>, ICardWeaponService
+    public class SheetSkillService : GenericService<SheetSkill>, ISheetSkillService
     {
-        public CardWeaponService(IGenericRepository<CardWeapon> repository)
+        public SheetSkillService(IGenericRepository<SheetSkill> repository)
+            : base(repository)
+        {
+        }
+    }
+    public class SheetWeaponService : GenericService<SheetWeapon>, ISheetWeaponService
+    {
+        public SheetWeaponService(IGenericRepository<SheetWeapon> repository)
             : base(repository)
         {
         }

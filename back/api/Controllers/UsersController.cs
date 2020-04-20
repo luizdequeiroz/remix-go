@@ -16,8 +16,8 @@ namespace api.Controllers
         public UsersController(IUserService userService)
             : base(userService,
                 "Usuário criado com sucesso!",
-                "Nenhum usuário encontrada!",
-                "Nenhum usuário foi encontrada!",
+                "Nenhum usuário encontrado!",
+                "Nenhum usuário foi encontrado!",
                 "Talvez o usuário tenha sido deletado, contate o suporte.",
                 "Usuário atualizado com sucesso!",
                 "Não foi possível deletar o usuário!",

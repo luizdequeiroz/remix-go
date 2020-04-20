@@ -1,12 +1,14 @@
 ﻿using domain.Entities;
+using Microsoft.AspNetCore.Mvc;
 using service.Interfaces;
+using System.Threading.Tasks;
 
 namespace api.Controllers
 {
-    public class CardController : GenericController<ICardService, Card>
+    public class MSController : GenericController<IMSService, MS>
     {
-        public CardController(ICardService cardService)
-            : base(cardService,
+        public MSController(IMSService msService)
+            : base(msService,
                 "Ficha criada com sucesso!",
                 "Nenhuma ficha encontrada!",
                 "Nenhuma ficha foi encontrada!",

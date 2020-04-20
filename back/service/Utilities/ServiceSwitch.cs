@@ -34,27 +34,31 @@ namespace service.Utilities
             {
                 case ServiceType.User: service = serviceProvider.GetService<IUserService>(); break;
                 case ServiceType.Table: service = serviceProvider.GetService<ITableService>(); break;
-                case ServiceType.Card: service = serviceProvider.GetService<ICardService>(); break;
+                case ServiceType.RMX: service = serviceProvider.GetService<IRMXService>(); break;
+                case ServiceType.MS: service = serviceProvider.GetService<IMSService>(); break;
                 case ServiceType.PlayerTable: service = serviceProvider.GetService<IPlayerTableService>(); break;
+                
                 case ServiceType.Armor: service = serviceProvider.GetService<IArmorService>(); break;
                 case ServiceType.Capabilitie: service = serviceProvider.GetService<ICapabilitieService>(); break;
                 case ServiceType.Disadvantage: service = serviceProvider.GetService<IDisadvantageService>(); break;
                 case ServiceType.EnhancedMove: service = serviceProvider.GetService<IEnhancedMoveService>(); break;
+                case ServiceType.GenericAdvantage: service = serviceProvider.GetService<IGenericAdvantageService>(); break;
                 case ServiceType.Item: service = serviceProvider.GetService<IItemService>(); break;
                 case ServiceType.Practice: service = serviceProvider.GetService<IPracticeService>(); break;
                 case ServiceType.PropertyAndRiche: service = serviceProvider.GetService<IPropertyAndRicheService>(); break;
                 case ServiceType.Skill: service = serviceProvider.GetService<ISkillService>(); break;
                 case ServiceType.Weapon: service = serviceProvider.GetService<IWeaponService>(); break;
 
-                case ServiceType.CardArmor: service = serviceProvider.GetService<ICardArmorService>(); break;
-                case ServiceType.CardCapabilitie: service = serviceProvider.GetService<ICardCapabilitieService>(); break;
-                case ServiceType.CardDisadvantage: service = serviceProvider.GetService<ICardDisadvantageService>(); break;
-                case ServiceType.CardEnhancedMove: service = serviceProvider.GetService<ICardEnhancedMoveService>(); break;
-                case ServiceType.CardItem: service = serviceProvider.GetService<ICardItemService>(); break;
-                case ServiceType.CardPractice: service = serviceProvider.GetService<ICardPracticeService>(); break;
-                case ServiceType.CardPropertyAndRiche: service = serviceProvider.GetService<ICardPropertyAndRicheService>(); break;
-                case ServiceType.CardSkill: service = serviceProvider.GetService<ICardSkillService>(); break;
-                case ServiceType.CardWeapon: service = serviceProvider.GetService<ICardWeaponService>(); break;
+                case ServiceType.SheetArmor: service = serviceProvider.GetService<ISheetArmorService>(); break;
+                case ServiceType.SheetCapabilitie: service = serviceProvider.GetService<ISheetCapabilitieService>(); break;
+                case ServiceType.SheetDisadvantage: service = serviceProvider.GetService<ISheetDisadvantageService>(); break;
+                case ServiceType.SheetEnhancedMove: service = serviceProvider.GetService<ISheetEnhancedMoveService>(); break;
+                case ServiceType.SheetGenericAdvantage: service = serviceProvider.GetService<ISheetGenericAdvantageService>(); break;
+                case ServiceType.SheetItem: service = serviceProvider.GetService<ISheetItemService>(); break;
+                case ServiceType.SheetPractice: service = serviceProvider.GetService<ISheetPracticeService>(); break;
+                case ServiceType.SheetPropertyAndRiche: service = serviceProvider.GetService<ISheetPropertyAndRicheService>(); break;
+                case ServiceType.SheetSkill: service = serviceProvider.GetService<ISheetSkillService>(); break;
+                case ServiceType.SheetWeapon: service = serviceProvider.GetService<ISheetWeaponService>(); break;
 
                 default:
                     var exception = new Exception("Service type is invalid.");
@@ -70,26 +74,31 @@ namespace service.Utilities
                 {
                     case "User": result = await service.SetNewAsync(JsonConvert.DeserializeObject<User>(entity.ToString())); break;
                     case "Table": result = await service.SetNewAsync(JsonConvert.DeserializeObject<Table>(entity.ToString())); break;
-                    case "Card": result = await service.SetNewAsync(JsonConvert.DeserializeObject<Card>(entity.ToString())); break;
+                    case "RMX": result = await service.SetNewAsync(JsonConvert.DeserializeObject<RMX>(entity.ToString())); break;
+                    case "MS": result = await service.SetNewAsync(JsonConvert.DeserializeObject<MS>(entity.ToString())); break;
                     case "PlayerTable": result = await service.SetNewAsync(JsonConvert.DeserializeObject<PlayerTable>(entity.ToString())); break;
+                    
                     case "Armor": result = await service.SetNewAsync(JsonConvert.DeserializeObject<Armor>(entity.ToString())); break;
                     case "Capabilitie": result = await service.SetNewAsync(JsonConvert.DeserializeObject<Capabilitie>(entity.ToString())); break;
                     case "Disadvantage": result = await service.SetNewAsync(JsonConvert.DeserializeObject<Disadvantage>(entity.ToString())); break;
                     case "EnhancedMove": result = await service.SetNewAsync(JsonConvert.DeserializeObject<EnhancedMove>(entity.ToString())); break;
+                    case "GenericAdvantage": result = await service.SetNewAsync(JsonConvert.DeserializeObject<GenericAdvantage>(entity.ToString())); break;
                     case "Item": result = await service.SetNewAsync(JsonConvert.DeserializeObject<Item>(entity.ToString())); break;
                     case "Practice": result = await service.SetNewAsync(JsonConvert.DeserializeObject<Practice>(entity.ToString())); break;
                     case "PropertyAndRiche": result = await service.SetNewAsync(JsonConvert.DeserializeObject<PropertyAndRiche>(entity.ToString())); break;
                     case "Skill": result = await service.SetNewAsync(JsonConvert.DeserializeObject<Skill>(entity.ToString())); break;
                     case "Weapon": result = await service.SetNewAsync(JsonConvert.DeserializeObject<Weapon>(entity.ToString())); break;
-                    case "CardArmor": result = await service.SetNewAsync(JsonConvert.DeserializeObject<CardArmor>(entity.ToString())); break;
-                    case "CardCapabilitie": result = await service.SetNewAsync(JsonConvert.DeserializeObject<CardCapabilitie>(entity.ToString())); break;
-                    case "CardDisadvantage": result = await service.SetNewAsync(JsonConvert.DeserializeObject<CardDisadvantage>(entity.ToString())); break;
-                    case "CardEnhancedMove": result = await service.SetNewAsync(JsonConvert.DeserializeObject<CardEnhancedMove>(entity.ToString())); break;
-                    case "CardItem": result = await service.SetNewAsync(JsonConvert.DeserializeObject<CardItem>(entity.ToString())); break;
-                    case "CardPractice": result = await service.SetNewAsync(JsonConvert.DeserializeObject<CardPractice>(entity.ToString())); break;
-                    case "CardPropertyAndRiche": result = await service.SetNewAsync(JsonConvert.DeserializeObject<CardPropertyAndRiche>(entity.ToString())); break;
-                    case "CardSkill": result = await service.SetNewAsync(JsonConvert.DeserializeObject<CardSkill>(entity.ToString())); break;
-                    case "CardWeapon": result = await service.SetNewAsync(JsonConvert.DeserializeObject<CardWeapon>(entity.ToString())); break;
+                    
+                    case "SheetArmor": result = await service.SetNewAsync(JsonConvert.DeserializeObject<SheetArmor>(entity.ToString())); break;
+                    case "SheetCapabilitie": result = await service.SetNewAsync(JsonConvert.DeserializeObject<SheetCapabilitie>(entity.ToString())); break;
+                    case "SheetDisadvantage": result = await service.SetNewAsync(JsonConvert.DeserializeObject<SheetDisadvantage>(entity.ToString())); break;
+                    case "SheetEnhancedMove": result = await service.SetNewAsync(JsonConvert.DeserializeObject<SheetEnhancedMove>(entity.ToString())); break;
+                    case "SheetGenericAdvantage": result = await service.SetNewAsync(JsonConvert.DeserializeObject<SheetGenericAdvantage>(entity.ToString())); break;
+                    case "SheetItem": result = await service.SetNewAsync(JsonConvert.DeserializeObject<SheetItem>(entity.ToString())); break;
+                    case "SheetPractice": result = await service.SetNewAsync(JsonConvert.DeserializeObject<SheetPractice>(entity.ToString())); break;
+                    case "SheetPropertyAndRiche": result = await service.SetNewAsync(JsonConvert.DeserializeObject<SheetPropertyAndRiche>(entity.ToString())); break;
+                    case "SheetSkill": result = await service.SetNewAsync(JsonConvert.DeserializeObject<SheetSkill>(entity.ToString())); break;
+                    case "SheetWeapon": result = await service.SetNewAsync(JsonConvert.DeserializeObject<SheetWeapon>(entity.ToString())); break;
                     default:
                         var exception = new Exception("Service type is invalid.");
                         throw exception;
@@ -108,26 +117,31 @@ namespace service.Utilities
                 {
                     case "User": result = await service.AlterAsync(JsonConvert.DeserializeObject<User>(entity.ToString())); break;
                     case "Table": result = await service.AlterAsync(JsonConvert.DeserializeObject<Table>(entity.ToString())); break;
-                    case "Card": result = await service.AlterAsync(JsonConvert.DeserializeObject<Card>(entity.ToString())); break;
+                    case "RMX": result = await service.AlterAsync(JsonConvert.DeserializeObject<RMX>(entity.ToString())); break;
+                    case "MS": result = await service.AlterAsync(JsonConvert.DeserializeObject<MS>(entity.ToString())); break;
                     case "PlayerTable": result = await service.AlterAsync(JsonConvert.DeserializeObject<PlayerTable>(entity.ToString())); break;
+                    
                     case "Armor": result = await service.AlterAsync(JsonConvert.DeserializeObject<Armor>(entity.ToString())); break;
                     case "Capabilitie": result = await service.AlterAsync(JsonConvert.DeserializeObject<Capabilitie>(entity.ToString())); break;
                     case "Disadvantage": result = await service.AlterAsync(JsonConvert.DeserializeObject<Disadvantage>(entity.ToString())); break;
                     case "EnhancedMove": result = await service.AlterAsync(JsonConvert.DeserializeObject<EnhancedMove>(entity.ToString())); break;
+                    case "GenericAdvantage": result = await service.AlterAsync(JsonConvert.DeserializeObject<GenericAdvantage>(entity.ToString())); break;
                     case "Item": result = await service.AlterAsync(JsonConvert.DeserializeObject<Item>(entity.ToString())); break;
                     case "Practice": result = await service.AlterAsync(JsonConvert.DeserializeObject<Practice>(entity.ToString())); break;
                     case "PropertyAndRiche": result = await service.AlterAsync(JsonConvert.DeserializeObject<PropertyAndRiche>(entity.ToString())); break;
                     case "Skill": result = await service.AlterAsync(JsonConvert.DeserializeObject<Skill>(entity.ToString())); break;
                     case "Weapon": result = await service.AlterAsync(JsonConvert.DeserializeObject<Weapon>(entity.ToString())); break;
-                    case "CardArmor": result = await service.AlterAsync(JsonConvert.DeserializeObject<CardArmor>(entity.ToString())); break;
-                    case "CardCapabilitie": result = await service.AlterAsync(JsonConvert.DeserializeObject<CardCapabilitie>(entity.ToString())); break;
-                    case "CardDisadvantage": result = await service.AlterAsync(JsonConvert.DeserializeObject<CardDisadvantage>(entity.ToString())); break;
-                    case "CardEnhancedMove": result = await service.AlterAsync(JsonConvert.DeserializeObject<CardEnhancedMove>(entity.ToString())); break;
-                    case "CardItem": result = await service.AlterAsync(JsonConvert.DeserializeObject<CardItem>(entity.ToString())); break;
-                    case "CardPractice": result = await service.AlterAsync(JsonConvert.DeserializeObject<CardPractice>(entity.ToString())); break;
-                    case "CardPropertyAndRiche": result = await service.AlterAsync(JsonConvert.DeserializeObject<CardPropertyAndRiche>(entity.ToString())); break;
-                    case "CardSkill": result = await service.AlterAsync(JsonConvert.DeserializeObject<CardSkill>(entity.ToString())); break;
-                    case "CardWeapon": result = await service.AlterAsync(JsonConvert.DeserializeObject<CardWeapon>(entity.ToString())); break;
+                    
+                    case "SheetArmor": result = await service.AlterAsync(JsonConvert.DeserializeObject<SheetArmor>(entity.ToString())); break;
+                    case "SheetCapabilitie": result = await service.AlterAsync(JsonConvert.DeserializeObject<SheetCapabilitie>(entity.ToString())); break;
+                    case "SheetDisadvantage": result = await service.AlterAsync(JsonConvert.DeserializeObject<SheetDisadvantage>(entity.ToString())); break;
+                    case "SheetEnhancedMove": result = await service.AlterAsync(JsonConvert.DeserializeObject<SheetEnhancedMove>(entity.ToString())); break;
+                    case "SheetGenericAdvantage": result = await service.AlterAsync(JsonConvert.DeserializeObject<SheetGenericAdvantage>(entity.ToString())); break;
+                    case "SheetItem": result = await service.AlterAsync(JsonConvert.DeserializeObject<SheetItem>(entity.ToString())); break;
+                    case "SheetPractice": result = await service.AlterAsync(JsonConvert.DeserializeObject<SheetPractice>(entity.ToString())); break;
+                    case "SheetPropertyAndRiche": result = await service.AlterAsync(JsonConvert.DeserializeObject<SheetPropertyAndRiche>(entity.ToString())); break;
+                    case "SheetSkill": result = await service.AlterAsync(JsonConvert.DeserializeObject<SheetSkill>(entity.ToString())); break;
+                    case "SheetWeapon": result = await service.AlterAsync(JsonConvert.DeserializeObject<SheetWeapon>(entity.ToString())); break;
                     default:
                         var exception = new Exception("Service type is invalid.");
                         throw exception;

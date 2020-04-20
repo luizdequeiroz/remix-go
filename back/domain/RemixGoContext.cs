@@ -17,7 +17,7 @@ namespace domain
             {
                 Id = 1,
                 Username = "luizdequeiroz",
-                Password = "C7AD44CBAD762A5DA0A452F9E854FDC1E0E7A52A38015F23F3EAB1D80B931DD472634DFAC71CD34EBC35D16AB7FB8A90C81F975113D6C7538DC69DD8DE9077EC",
+                Password = "8BC00E795870011174F8138ED09DF91B2822F5A6D19DC48B5C06E63598BCFD1D997C3A95736EE965C36A42F5D0F8A7E0A4CA29F9CBD1A4E4559940E64658CE0A",
                 RegisterDate = DateTime.Now,
                 Fullname = "Luiz de Queiroz",
                 Email = "oluizdequeiroz@gmail.com"
@@ -26,7 +26,8 @@ namespace domain
 
         public DbSet<User> Users { get; set; }
         public DbSet<Table> Tables { get; set; }
-        public DbSet<Card> Cards { get; set; }
+        public DbSet<RMX> RMXs { get; set; }
+        public DbSet<MS> MSs { get; set; }
 
         public DbSet<PlayerTable> PlayerTables { get; set; }
 
@@ -40,14 +41,14 @@ namespace domain
         public DbSet<Skill> Skills { get; set; }
         public DbSet<Weapon> Weapons { get; set; }
 
-        public DbSet<CardArmor> CardArmors { get; set; }
-        public DbSet<CardCapabilitie> CardCapabilities { get; set; }
-        public DbSet<CardDisadvantage> CardDisadvantages { get; set; }
-        public DbSet<CardEnhancedMove> CardEnhancedMoves { get; set; }
-        public DbSet<CardItem> CardItems { get; set; }
-        public DbSet<CardPractice> CardPractices { get; set; }
-        public DbSet<CardPropertyAndRiche> CardPropertyAndRiches { get; set; }
-        public DbSet<CardSkill> CardSkills { get; set; }
-        public DbSet<CardWeapon> CardWeapons { get; set; }
+        public DbSet<SheetArmor> SheetArmors { get; set; }
+        public DbSet<SheetCapabilitie> SheetCapabilities { get; set; }
+        public DbSet<SheetDisadvantage> SheetDisadvantages { get; set; }
+        public DbSet<SheetEnhancedMove> SheetEnhancedMoves { get; set; }
+        public DbSet<SheetItem> SheetItems { get; set; }
+        public DbSet<SheetPractice> SheetPractices { get; set; }
+        public DbSet<SheetPropertyAndRiche> SheetPropertyAndRiches { get; set; }
+        public DbSet<SheetSkill> SheetSkills { get; set; }
+        public DbSet<SheetWeapon> SheetWeapons { get; set; }
     }
 }

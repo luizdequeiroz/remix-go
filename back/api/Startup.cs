@@ -78,8 +78,31 @@ namespace api
 
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ITableService, TableService>();
-            services.AddTransient<ICardService, CardService>();
+            services.AddTransient<IRMXService, RMXService>();
+            services.AddTransient<IMSService, MSService>();
+            services.AddTransient<IPlayerTableService, PlayerTableService>();
+
             services.AddTransient<IArmorService, ArmorService>();
+            services.AddTransient<ICapabilitieService, CapabilitieService>();
+            services.AddTransient<IDisadvantageService, DisadvantageService>();
+            services.AddTransient<IEnhancedMoveService, EnhancedMoveService>();
+            services.AddTransient<IGenericAdvantageService, GenericAdvantageService>();
+            services.AddTransient<IItemService, ItemService>();
+            services.AddTransient<IPracticeService, PracticeService>();
+            services.AddTransient<IPropertyAndRicheService, PropertyAndRicheService>();
+            services.AddTransient<ISkillService, SkillService>();
+            services.AddTransient<IWeaponService, WeaponService>();
+
+            services.AddTransient<ISheetArmorService, SheetArmorService>();
+            services.AddTransient<ISheetCapabilitieService, SheetCapabilitieService>();
+            services.AddTransient<ISheetDisadvantageService, SheetDisadvantageService>();
+            services.AddTransient<ISheetEnhancedMoveService, SheetEnhancedMoveService>();
+            services.AddTransient<ISheetGenericAdvantageService, SheetGenericAdvantageService>();
+            services.AddTransient<ISheetItemService, SheetItemService>();
+            services.AddTransient<ISheetPracticeService, SheetPracticeService>();
+            services.AddTransient<ISheetPropertyAndRicheService, SheetPropertyAndRicheService>();
+            services.AddTransient<ISheetSkillService, SheetSkillService>();
+            services.AddTransient<ISheetWeaponService, SheetWeaponService>();
 
             services.AddTransient<IServiceSwitch, ServiceSwitch>();
 

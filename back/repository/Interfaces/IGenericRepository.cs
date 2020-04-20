@@ -12,6 +12,6 @@ namespace repository.Interfaces
         Task<E> SelectByIdAsync(int id);
         Task<E> UpdateAsync(E entity);
         Task DeleteAsync(E entity);
-        Task<IEnumerable<E>> SelectWhere(Expression<Func<E, bool>> expression);
+        Task<IEnumerable<E>> SelectWhereAsync(Expression<Func<E, bool>> expression);
     }
 }
