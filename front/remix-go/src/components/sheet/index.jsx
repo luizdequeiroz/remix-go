@@ -2,19 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSagas, useReducers } from 'react-resaga';
 
 function SheetItem(sheet) {
-    return <div className="card">
-        <div className="card-header">
-            <div className="card-title">
-                <div className="text-center pt-2 bg-fff">
-                    <h3>{sheet.characterName}</h3>
-                </div>
-            </div>
-        </div>
-        <div className="card-body">
-
-        </div>
-        <div></div>
-    </div>;
+    return <h3>{sheet.characterName}</h3>;
 }
 
 function Sheets() {

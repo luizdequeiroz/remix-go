@@ -73,6 +73,27 @@ namespace api.Controllers
             }
         }
 
+        [HttpGet("{serviceType}/{propertyName}/{value}")]
+        public async Task<IActionResult> ReadByPropertyAsync(ServiceType serviceType, string propertyName, string value)
+        {
+            try
+            {
+                var registers = await serviceSwitch.Case(serviceType).GetByPropertyAsync(propertyName, value);
+
+                if (registers.Count == 0)
+                    return Warning(
+                        $"Nenhum registro de {serviceType.ToDescriptionString()} foi encontrado!",
+                        $"Talvez o registro de {serviceType.ToDescriptionString()} tenha sido deletado, contate o suporte."
+                    );
+
+                return Success(registers);
+            }
+            catch (Exception ex)
+            {
+                return Error(ex);
+            }
+        }
+
         [HttpPut("{serviceType}/{id}")]
         public async Task<IActionResult> UpdateAsync(ServiceType serviceType, int id, dynamic entity)
         {

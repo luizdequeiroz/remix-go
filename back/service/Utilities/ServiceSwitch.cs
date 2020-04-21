@@ -24,6 +24,7 @@ namespace service.Utilities
         public Func<object, Task<dynamic>> SetNewAsync { get; private set; }
         public Func<Task<IList<dynamic>>> GetAllAsync { get; private set; }
         public Func<int, Task<dynamic>> GetByIdAsync { get; private set; }
+        public Func<string, string, Task<IList<dynamic>>> GetByPropertyAsync { get; private set; }
         public Func<object, Task<dynamic>> AlterAsync { get; private set; }
         public Func<int, Task<bool>> DeleteAsync { get; private set; }
 
@@ -108,6 +109,7 @@ namespace service.Utilities
             };
             GetAllAsync = async () => ((await service.GetAllAsync()) as IEnumerable<dynamic>).ToList();
             GetByIdAsync = async id => await service.GetByIdAsync(id);
+            GetByPropertyAsync = async (propertyName, value) => (await service.GetByPropertyAsync(propertyName, value) as IEnumerable<dynamic>).ToList();
             AlterAsync = async entity =>
             {
                 var typeServiceType = Type.GetType(string.Format(FullNameEntities, serviceType.ToString()));

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using ExtensionsPlus;
 using System.Linq;
 using domain.Attributes.FieldsControl;
+using System.Reflection;
 
 namespace service
 {
@@ -80,7 +81,9 @@ namespace service
 
         public async Task<IList<E>> GetByPropertyAsync(string propertyName, string value)
         {
-            var collection = await repository.SelectWhereAsync(item => item.GetType().GetProperty(propertyName).GetValue(item).ToString() == value);
+            var collection = await repository.SelectWhereAsync(item => item.GetType()
+                .GetProperty(propertyName, BindingFlags.SetProperty | BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance)
+                .GetValue(item).ToString() == value);
             return collection.ToList();
         }
 
