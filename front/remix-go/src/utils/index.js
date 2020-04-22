@@ -147,3 +147,22 @@ export function notAcceptFuture(dateTime) {
 
     return dateTime;
 }
+
+let count = 0;
+export function getColor(_index, isCallback = false) {
+    count = isCallback ? count : 0;
+
+    switch (_index) {
+        case 0: return "primary";
+        case 1: return "secondary";
+        case 2: return "success";
+        case 3: return "danger";
+        case 4: return "warning";
+        case 5: return "info";
+        case 6: return "dark";
+        default:
+            const color = getColor(_index - (_index - count), true);
+            count++;
+            return color;
+    }
+}

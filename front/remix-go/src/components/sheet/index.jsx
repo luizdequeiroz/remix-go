@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSagas, useReducers } from 'react-resaga';
-
-function SheetItem(sheet) {
-    return <h3>{sheet.characterName}</h3>;
-}
+import MSCard from './ms-card';
+import { getColor } from '../../utils';
 
 function Sheets() {
     const { session } = useReducers('session');
@@ -13,10 +11,12 @@ function Sheets() {
 
     useEffect(() => {
         getSheetsByUserId(session.content.id, response => setSheets(response.content));
-    }, [session]); // eslint-disable-line
+    }, [session]); // eslint-disable-line    
 
-    return <div className="row">
-        {sheets && sheets.map(SheetItem)}
+    return <div className="row pl-5">
+        {sheets && sheets.map((sheet, index) => 
+            <MSCard type={getColor(index)} {...sheet} />
+        )}
     </div>;
 }
 
